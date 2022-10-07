@@ -19,11 +19,11 @@ int Vana::Init()
 
 void Vana::Update()
 {
-	while (graphicSystem.GraphicUpdate())
+	while (!graphicSystem.GraphicUpdate())
 	{
 		root->Update();
 
-
+		graphicSystem.GraphiceSwapBuffer();
 	}
 
 }

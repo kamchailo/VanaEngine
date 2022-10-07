@@ -8,11 +8,11 @@ float vert1[] =
 };
 
 
-NodeGraphic* nG = new NodeGraphic(Vana::root, vert1, NULL);
 
 int main()
 {
 	Vana::Init();
+	NodeGraphic* nG = new NodeGraphic(Vana::root, vert1, NULL);
 
 	Vana::Update();
 

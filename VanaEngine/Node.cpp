@@ -16,6 +16,7 @@ namespace Vana {
 		this->transform = glm::mat4(1);
 		if (parentNode)
 		{
+			parentNode->AddChild(this);
 			this->parentTransfrom = parentNode->transform * parentNode->parentTransfrom;
 		}
 		else

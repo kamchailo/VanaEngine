@@ -3,7 +3,6 @@
 #ifndef VENA_CLASS_NODE
 #define VENA_CLASS_NODE
 
-#pragma message("DECLARE_NODE_CLASS")
 namespace Vana {
 
 	class Node
@@ -11,7 +10,7 @@ namespace Vana {
 	public:
 		Node();
 		Node(Node*);
-		void Update();
+		virtual void Update();
 		std::map< unsigned int, Node*> GetChildren();
 		Node* GetChild(unsigned int);
 		Node* GetParent();
@@ -31,6 +30,5 @@ namespace Vana {
 
 	};
 }
-#pragma message("DECLARE_NODE_CLASS--END")
 
 #endif

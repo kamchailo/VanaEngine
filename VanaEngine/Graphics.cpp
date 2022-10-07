@@ -75,10 +75,15 @@ int GraphicSystem::GraphicUpdate()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 
+	return 0;
+}
+
+int GraphicSystem::GraphiceSwapBuffer()
+{
 	// glfw : swap buffers and poll IO events
 	glfwSwapBuffers(window);
 	glfwPollEvents();
-	return 1;
+	return 0;
 }
 
 GLFWwindow* GraphicSystem::GetWindow()

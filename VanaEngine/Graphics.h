@@ -10,6 +10,7 @@ public:
 	~GraphicSystem();
 	int Init();
 	int GraphicUpdate();
+	int GraphiceSwapBuffer();
 	GLFWwindow* GetWindow();
 private:
 	GLFWwindow* window;
