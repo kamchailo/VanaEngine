@@ -14,6 +14,7 @@ int Vana::Init(int width, int height)
 	std::cout << "Vana Engine Initializing" << std::endl;
 	graphicSystem.Init(width, height);
 	ShaderCollection::Init();
+	MeshCollection::Init();
 	root = new Vana::Node(NULL);
 	root->DefaultInit();
 	return 0;
