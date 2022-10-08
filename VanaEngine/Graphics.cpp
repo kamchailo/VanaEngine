@@ -6,10 +6,12 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 GraphicSystem::~GraphicSystem()
 {
+	glfwTerminate();
 }
 
-int GraphicSystem::Init()
+int GraphicSystem::Init(int width, int height)
 {
+	windowSize = glm::vec2(width, height);
 	std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
 	//			  Init GLFW
@@ -27,7 +29,7 @@ int GraphicSystem::Init()
 	// ================================
 	//			Create Windows
 	// ================================
-	window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+	window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -102,6 +104,5 @@ void processInput(GLFWwindow* window)
 // glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	std::cout << "inside frame buffer callback" << std::endl;
 	glViewport(0, 0, width, height);
 }

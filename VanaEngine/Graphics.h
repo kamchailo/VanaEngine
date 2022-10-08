@@ -8,10 +8,11 @@ class GraphicSystem
 {
 public:
 	~GraphicSystem();
-	int Init();
+	int Init(int width, int height);
 	int GraphicUpdate();
 	int GraphiceSwapBuffer();
 	GLFWwindow* GetWindow();
+	inline static glm::vec2 windowSize;
 private:
 	GLFWwindow* window;
 };

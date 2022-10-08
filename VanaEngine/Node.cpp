@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "Node.h"
+#include "Graphics.h"
 
 namespace Vana {
 	Node::Node()
 	{
+		this->nodeID = ++Node::nodeIDMax;
 		this->parent = NULL;
 		this->transform = glm::mat4(1);
 		this->parentTransfrom = glm::mat4(1);
@@ -11,7 +13,7 @@ namespace Vana {
 
 	Node::Node(Node* parentNode)
 	{
-		//this->nodeID = ++Node::nodeIDMax;
+		this->nodeID = ++Node::nodeIDMax;
 		this->parent = parentNode;
 		this->transform = glm::mat4(1);
 		if (parentNode)
@@ -26,6 +28,11 @@ namespace Vana {
 	}
 	void Node::Update()
 	{
+		// Transformation 
+		if (parent)
+		{
+			parentTransfrom = parent->parentTransfrom * parent->transform;
+		}
 		for (const auto& child : children)
 		{
 			child.second->Update();
@@ -51,15 +58,20 @@ namespace Vana {
 		return this;
 	}
 
-	void Node::Translate(glm::vec3)
+	void Node::Translate(glm::vec3 translateVec)
 	{
+		translateVec.x = translateVec.x / GraphicSystem::windowSize.x;
+		translateVec.y = translateVec.y / GraphicSystem::windowSize.y;
+		transform = glm::translate(transform, translateVec);
 	}
 
-	void Node::Rotate(glm::vec3)
+	void Node::Rotate(glm::vec3 rotateVec)
 	{
+
 	}
 
-	void Node::Scale(glm::vec3)
+	void Node::Scale(glm::vec3 scaleVec)
 	{
+		transform = glm::scale(transform, scaleVec);
 	}
 }

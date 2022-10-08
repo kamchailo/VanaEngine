@@ -24,7 +24,7 @@ namespace Vana {
 		unsigned int nodeID;
 		Node* parent;
 		std::map< unsigned int, Node*> children;
-		//unsigned int static nodeIDMax;
+		inline unsigned int static nodeIDMax;
 
 
 

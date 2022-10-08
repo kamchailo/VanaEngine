@@ -12,7 +12,7 @@ GraphicSystem graphicSystem;
 int Vana::Init()
 {
 	std::cout << "Vana Engine Initializing" << std::endl;
-	graphicSystem.Init();
+	graphicSystem.Init(800, 600);
 	ShaderCollection::Init();
 	root = new Vana::Node(NULL);
 	return 0;

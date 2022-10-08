@@ -10,18 +10,27 @@ struct Geometry
 {
 	// either include vert and mesh or separate//
 	float* vertices;
+	int verticesCount;
 	unsigned int* indices;
+	int indicesCount;
 };
 
+enum ShapeType 
+{
+	SHAPE_VERT,
+	SHAPE_MESH
+};
 
 class NodeGraphic : public Vana::Node
 {
 public:
-	NodeGraphic(Vana::Node* parentNode, float* vertices, unsigned int shaderID);
-	NodeGraphic(Vana::Node* parentNode, float* vertices, unsigned int* indices, unsigned int shaderID);
+	NodeGraphic(Vana::Node* parentNode, float* vertices, int veticesSize, unsigned int shaderID);
+	NodeGraphic(Node* parentNode, float* vertices, int verticesCount, unsigned int* indices, int indicesCount, unsigned int shaderID);
 	~NodeGraphic();
-	void GenNodeBuffer();
+	void GenNodeBufferForVert();
+	void GenNodeBufferIndices();
 	void Update();
+	ShapeType type;
 	unsigned int VAO;
 	void Draw();
 	unsigned int shaderID;
