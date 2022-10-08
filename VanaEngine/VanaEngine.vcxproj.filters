@@ -19,6 +19,9 @@
     <Filter Include="Nodes">
       <UniqueIdentifier>{0fcb91fd-4bb1-42bd-ac8f-2a7017fa9d8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{5d81d740-c28b-4f78-98a1-b0bf4eb60e74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -36,10 +39,16 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NodeGraphic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="VanaEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NodeGraphic.h">
+    <ClInclude Include="VanaDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -61,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="NodeGraphic.cpp">
       <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderCollection.cpp">
+      <Filter>Shaders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

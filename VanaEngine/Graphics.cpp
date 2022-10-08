@@ -10,6 +10,7 @@ GraphicSystem::~GraphicSystem()
 
 int GraphicSystem::Init()
 {
+	std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
 	//			  Init GLFW
 	// ================================
@@ -22,6 +23,7 @@ int GraphicSystem::Init()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// ================================
 
+	std::cout << ">> 2. Create window" << std::endl;
 	// ================================
 	//			Create Windows
 	// ================================
@@ -40,7 +42,7 @@ int GraphicSystem::Init()
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	// ================================
 	
-	
+	std::cout << ">> 3. GLAD Init" << std::endl;
 	// ================================
 	//			  GLAD Init
 	// ================================
@@ -66,7 +68,7 @@ int GraphicSystem::GraphicUpdate()
 {
 	if (glfwWindowShouldClose(window))
 	{
-		return 0;
+		return 1;
 	}
 	// input
 	processInput(window);
@@ -100,5 +102,6 @@ void processInput(GLFWwindow* window)
 // glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
+	std::cout << "inside frame buffer callback" << std::endl;
 	glViewport(0, 0, width, height);
 }

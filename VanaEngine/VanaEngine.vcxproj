@@ -171,6 +171,8 @@
     <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderCollection.h" />
+    <ClInclude Include="VanaDefine.h" />
     <ClInclude Include="VanaEngine.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderCollection.cpp" />
     <ClCompile Include="VanaEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

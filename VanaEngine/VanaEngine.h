@@ -4,6 +4,8 @@
 #include "Node.h"
 #include "NodeGraphic.h"
 #include "Graphics.h"
+#include "Shader.h"
+#include "ShaderCollection.h"
 
 //class VanaEngine
 //{
