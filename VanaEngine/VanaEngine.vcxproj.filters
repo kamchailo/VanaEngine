@@ -19,8 +19,8 @@
     <Filter Include="Nodes">
       <UniqueIdentifier>{0fcb91fd-4bb1-42bd-ac8f-2a7017fa9d8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{5d81d740-c28b-4f78-98a1-b0bf4eb60e74}</UniqueIdentifier>
+    <Filter Include="Inputs">
+      <UniqueIdentifier>{3086e835-c517-4300-abba-8a35d67584e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +49,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VanaDefine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -72,7 +78,13 @@
       <Filter>Nodes</Filter>
     </ClCompile>
     <ClCompile Include="ShaderCollection.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCollection.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

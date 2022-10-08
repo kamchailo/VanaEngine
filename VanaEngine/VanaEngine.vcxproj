@@ -167,6 +167,8 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshCollection.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
@@ -177,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshCollection.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeGraphic.cpp" />
     <ClCompile Include="pch.cpp">
