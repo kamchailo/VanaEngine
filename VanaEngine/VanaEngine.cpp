@@ -9,12 +9,13 @@
 GraphicSystem graphicSystem;
 //Vana::Node* root = NULL;
 
-int Vana::Init()
+int Vana::Init(int width, int height)
 {
 	std::cout << "Vana Engine Initializing" << std::endl;
-	graphicSystem.Init(800, 600);
+	graphicSystem.Init(width, height);
 	ShaderCollection::Init();
 	root = new Vana::Node(NULL);
+	root->DefaultInit();
 	return 0;
 }
 
@@ -23,7 +24,7 @@ void Vana::Update()
 	while (!graphicSystem.GraphicUpdate())
 	{
 		// All Graphic Update Goes Here
-		root->Update();
+		root->DefaultUpdate();
 
 		graphicSystem.GraphiceSwapBuffer();
 	}

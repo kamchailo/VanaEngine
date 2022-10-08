@@ -24,16 +24,17 @@ enum ShapeType
 class NodeGraphic : public Vana::Node
 {
 public:
-	NodeGraphic(Vana::Node* parentNode, float* vertices, int veticesSize, unsigned int shaderID);
-	NodeGraphic(Node* parentNode, float* vertices, int verticesCount, unsigned int* indices, int indicesCount, unsigned int shaderID);
+	NodeGraphic(Vana::Node* parentNode, float* vertices, int veticesSize, Shader* shader);
+	NodeGraphic(Node* parentNode, float* vertices, int verticesCount, unsigned int* indices, int indicesCount, Shader* shader);
 	~NodeGraphic();
 	void GenNodeBufferForVert();
 	void GenNodeBufferIndices();
-	void Update();
+	void DefaultInit();
+	void DefaultUpdate();
 	ShapeType type;
 	unsigned int VAO;
 	void Draw();
-	unsigned int shaderID;
+	Shader* shader;
 private:
 	Geometry* geometry;
 	unsigned int VBO, EBO;

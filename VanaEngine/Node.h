@@ -10,6 +10,9 @@ namespace Vana {
 	public:
 		Node();
 		Node(Node*);
+		virtual void DefaultInit();
+		virtual void Init();
+		virtual void DefaultUpdate();
 		virtual void Update();
 		std::map< unsigned int, Node*> GetChildren();
 		Node* GetChild(unsigned int);

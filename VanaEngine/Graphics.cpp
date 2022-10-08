@@ -12,7 +12,7 @@ GraphicSystem::~GraphicSystem()
 int GraphicSystem::Init(int width, int height)
 {
 	windowSize = glm::vec2(width, height);
-	std::cout << ">> 1. GLFW INIT" << std::endl;
+	//std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
 	//			  Init GLFW
 	// ================================
@@ -25,7 +25,7 @@ int GraphicSystem::Init(int width, int height)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// ================================
 
-	std::cout << ">> 2. Create window" << std::endl;
+	//std::cout << ">> 2. Create window" << std::endl;
 	// ================================
 	//			Create Windows
 	// ================================
@@ -44,7 +44,7 @@ int GraphicSystem::Init(int width, int height)
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	// ================================
 	
-	std::cout << ">> 3. GLAD Init" << std::endl;
+	//std::cout << ">> 3. GLAD Init" << std::endl;
 	// ================================
 	//			  GLAD Init
 	// ================================

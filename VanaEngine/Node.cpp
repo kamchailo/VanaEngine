@@ -26,18 +26,39 @@ namespace Vana {
 			this->parentTransfrom = glm::mat4(1);
 		}
 	}
-	void Node::Update()
+
+	void Node::DefaultInit()
+	{
+		for (const auto& child : children)
+		{
+			child.second->DefaultInit();
+			child.second->Init();
+		}
+	}
+
+	void Node::Init()
+	{
+	}
+
+	void Node::DefaultUpdate()
 	{
 		// Transformation 
 		if (parent)
 		{
 			parentTransfrom = parent->parentTransfrom * parent->transform;
+			//transform = parentTransfrom * transform;
 		}
 		for (const auto& child : children)
 		{
+			child.second->DefaultUpdate();
 			child.second->Update();
 		}
 	}
+
+	void Node::Update()
+	{
+	}
+
 	std::map<unsigned int, Node*> Node::GetChildren()
 	{
 		return children;
@@ -67,7 +88,18 @@ namespace Vana {
 
 	void Node::Rotate(glm::vec3 rotateVec)
 	{
-
+		if (rotateVec.x != 0)
+		{
+			transform = glm::rotate(transform,glm::radians(rotateVec.x), glm::vec3(1.0,0.0,0.0));
+		}
+		if (rotateVec.y != 0)
+		{
+			transform = glm::rotate(transform, glm::radians(rotateVec.y), glm::vec3(0.0, 1.0, 0.0));
+		}
+		if (rotateVec.z != 0)
+		{
+			transform = glm::rotate(transform, glm::radians(rotateVec.z), glm::vec3(0.0, 0.0, 1.0));
+		}
 	}
 
 	void Node::Scale(glm::vec3 scaleVec)

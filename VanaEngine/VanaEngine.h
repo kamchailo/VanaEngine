@@ -19,7 +19,7 @@
 
 namespace Vana
 {
-	int Init();
+	int Init(int width, int height);
 	inline Node* root;
 	void Update();
 }
