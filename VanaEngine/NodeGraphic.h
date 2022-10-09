@@ -22,13 +22,15 @@ struct Geometry
 enum ShapeType 
 {
 	SHAPE_VERT,
-	SHAPE_MESH
+	SHAPE_MESH,
+	SHAPE_SPRITE
 };
 
 class NodeGraphic : public Vana::Node
 {
 public:
 	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, ShapeType type);
+	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, char* texturePath);
 	~NodeGraphic();
 	void DefaultInit();
 	void DefaultUpdate();

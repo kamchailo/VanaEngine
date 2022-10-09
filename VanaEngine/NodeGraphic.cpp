@@ -8,6 +8,13 @@ NodeGraphic::NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, ShapeType
 	this->shader = shader;
 }
 
+NodeGraphic::NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, char* texturePath) : Node(parentNode)
+{
+	this->type = type;
+	this->mesh = mesh;
+	this->shader = shader;
+}
+
 NodeGraphic::~NodeGraphic()
 {
 }
