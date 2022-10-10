@@ -57,6 +57,9 @@
     <ClInclude Include="MeshCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -84,6 +87,12 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="MeshCollection.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="std_image.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>

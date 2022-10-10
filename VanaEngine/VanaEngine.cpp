@@ -16,12 +16,12 @@ int Vana::Init(int width, int height)
 	ShaderCollection::Init();
 	MeshCollection::Init();
 	root = new Vana::Node(NULL);
-	root->DefaultInit();
 	return 0;
 }
 
 void Vana::Update()
 {
+	root->DefaultInit();
 	while (!graphicSystem.GraphicUpdate())
 	{
 		// All Graphic Update Goes Here

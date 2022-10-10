@@ -5,6 +5,7 @@
 #include "Shader.h"
 #include "ShaderCollection.h"
 #include "Mesh.h"
+#include "Texture.h"
 
 struct Geometry
 {
@@ -30,7 +31,7 @@ class NodeGraphic : public Vana::Node
 {
 public:
 	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, ShapeType type);
-	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, char* texturePath);
+	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, Texture* texture);
 	~NodeGraphic();
 	void DefaultInit();
 	void DefaultUpdate();
@@ -39,4 +40,5 @@ public:
 	Shader* shader;
 private:
 	Mesh* mesh;
+	Texture* texture;
 };

@@ -6,7 +6,9 @@
 #include "Graphics.h"
 #include "Shader.h"
 #include "ShaderCollection.h"
+#include "Mesh.h"
 #include "MeshCollection.h"
+#include "Texture.h"
 
 //class VanaEngine
 //{
