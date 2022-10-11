@@ -24,13 +24,14 @@ namespace Vana {
 		glm::mat4 transform;
 		glm::mat4 parentTransfrom;
 	private:
+		void UpdateTransform();
 		unsigned int nodeID;
 		Node* parent;
 		std::map< unsigned int, Node*> children;
+		glm::vec3 translate;
+		glm::vec3 rotate;
+		glm::vec3 scale;
 		inline unsigned int static nodeIDMax;
-
-
-
 	};
 }
 

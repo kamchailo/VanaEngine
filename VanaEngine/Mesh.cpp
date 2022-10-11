@@ -16,8 +16,8 @@ Mesh::Mesh(float* vertices, int verticesCount)
     glEnableVertexAttribArray(0);
     //std::cout << "glGetError: " << glGetError() << std::endl;
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 Mesh::Mesh(float* vertices, int verticesCount, unsigned int* indices, int indicesCount)
@@ -37,8 +37,8 @@ Mesh::Mesh(float* vertices, int verticesCount, unsigned int* indices, int indice
     glEnableVertexAttribArray(0);
     //std::cout << "glGetError: " << glGetError() << std::endl;
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
@@ -54,7 +54,7 @@ Mesh::Mesh(float* spriteVertices, int arraySize, unsigned int* indices, int indi
     glBufferData(GL_ARRAY_BUFFER, arraySize, spriteVertices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, arraySize, spriteVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesCount, indices, GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, strideCount * sizeof(float), (void*)0);
@@ -67,6 +67,8 @@ Mesh::Mesh(float* spriteVertices, int arraySize, unsigned int* indices, int indi
     glEnableVertexAttribArray(2);
 
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 Mesh::~Mesh()
