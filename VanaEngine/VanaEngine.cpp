@@ -6,13 +6,16 @@
 #include "VanaEngine.h"
 
 
-GraphicSystem graphicSystem;
+//GraphicSystem* graphicSystem;
 //Vana::Node* root = NULL;
 
 int Vana::Init(int width, int height)
 {
-	std::cout << "Vana Engine Initializing" << std::endl;
-	graphicSystem.Init(width, height);
+	logSystem = new Logger("Engine");
+	logSystem->Log(LOG_INFO, "Vana Engine Initializing");
+	//graphicSystem = GraphicSystem::GetInstance();
+	GraphicSystem::GetInstance()->Init(width, height);
+	Input::GetInstance()->Init();
 	ShaderCollection::Init();
 	MeshCollection::Init();
 	root = new Vana::Node(NULL);
@@ -22,12 +25,18 @@ int Vana::Init(int width, int height)
 void Vana::Update()
 {
 	root->DefaultInit();
-	while (!graphicSystem.GraphicUpdate())
+	while (!GraphicSystem::GetInstance()->GraphicUpdate())
 	{
 		// All Graphic Update Goes Here
 		root->DefaultUpdate();
 
-		graphicSystem.GraphiceSwapBuffer();
+		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 	}
 
+}
+
+void Vana::Terminate()
+{
+	delete(logSystem);
+	delete(root);
 }

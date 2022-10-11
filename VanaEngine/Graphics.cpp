@@ -6,11 +6,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 GraphicSystem::~GraphicSystem()
 {
+	delete(logGraphic);
 	glfwTerminate();
 }
 
 int GraphicSystem::Init(int width, int height)
 {
+	logGraphic = new Logger("Graphics");
 	windowSize = glm::vec2(width, height);
 	//std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
@@ -32,13 +34,15 @@ int GraphicSystem::Init(int width, int height)
 	window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
-		std::cout << "Failed to create GLFW window" << std::endl;
+		logGraphic->Log(LOG_ERROR, "Fail to Create GLFW window");
+		//std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
 		return 1;
 	}
 	else
 	{
-		std::cout << "GLFWwindow created" << std::endl;
+		logGraphic->Log(LOG_INFO, "GLFWwindow created");
+		//std::cout << "GLFWwindow created" << std::endl;
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -51,12 +55,14 @@ int GraphicSystem::Init(int width, int height)
 	// glad : load all OpenGL function pointers (to fit current environment)
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
+		logGraphic->Log(LOG_ERROR, "Failed to initialize GLAD");
+		//std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
 	else
 	{
-		std::cout << "GLAD Initialized" << std::endl;
+		logGraphic->Log(LOG_INFO, "GLAD Initialized");
+		//std::cout << "GLAD Initialized" << std::endl;
 	}
 	// use glad to help create viewport ; glad connect to os
 	//glViewport(0, 0, 800, 600); >> put in callback
@@ -93,6 +99,10 @@ int GraphicSystem::GraphiceSwapBuffer()
 GLFWwindow* GraphicSystem::GetWindow()
 {
 	return window;
+}
+
+GraphicSystem::GraphicSystem()
+{
 }
 
 void processInput(GLFWwindow* window)

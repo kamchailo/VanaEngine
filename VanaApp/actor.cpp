@@ -15,8 +15,9 @@ void Actor::Init()
 
 void Actor::Update()
 {
-	this->Scale(glm::vec3(1.0, 0.2, 1.0));
-	i += 0.01;
+	//this->Scale(glm::vec3(1.0 - sin(i * 0.01), sin(i*0.01), 1.0));
+	i += 0.001;
+	this->Translate(glm::vec3(400*sin(i), 0.0, 0.0));
 	//std::cout << i << std::endl;
-	this->Rotate(glm::vec3(0.0, 0.0, i));
+	this->Rotate(glm::vec3(0.0, 0.0, 20*sin(i)));
 }

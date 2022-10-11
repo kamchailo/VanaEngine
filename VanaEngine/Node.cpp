@@ -110,8 +110,8 @@ namespace Vana {
 	{
 		// calc transform = 
 		glm::vec3 worldTranslate(0);
-		worldTranslate.x = (translate.x / GraphicSystem::windowSize.x);
-		worldTranslate.y = (translate.y / GraphicSystem::windowSize.y);
+		worldTranslate.x = (translate.x / GraphicSystem::windowSize.x) * 2.0;
+		worldTranslate.y = (translate.y / GraphicSystem::windowSize.y) * 2.0;
 		//std::cout << nodeID <<" World Translate: " << worldTranslate.x << ", " << worldTranslate.y << std::endl;
 		transform = glm::translate(transform, worldTranslate);
 		if (rotate.x != 0)
