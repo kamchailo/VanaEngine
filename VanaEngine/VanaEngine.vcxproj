@@ -181,6 +181,7 @@
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="VanaDefine.h" />
     <ClInclude Include="VanaEngine.h" />
   </ItemGroup>
@@ -203,6 +204,7 @@
     <ClCompile Include="std_image.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VanaEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

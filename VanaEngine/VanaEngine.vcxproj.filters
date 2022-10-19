@@ -25,6 +25,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{2a8e53af-879e-4841-b10f-14e7fea6ba93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NodeComponents">
+      <UniqueIdentifier>{cde0ea79-9294-43b9-b92a-191e145ccfbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -118,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>NodeComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
