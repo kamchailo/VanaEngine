@@ -24,9 +24,15 @@
     <ClCompile Include="actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ActorChild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorChild.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
