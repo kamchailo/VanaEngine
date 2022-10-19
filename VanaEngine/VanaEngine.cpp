@@ -18,7 +18,7 @@ int Vana::Init(int width, int height)
 	Input::GetInstance()->Init();
 	ShaderCollection::Init();
 	MeshCollection::Init();
-	root = new Vana::Node(NULL);
+	root = new Vana::Node();
 	return 0;
 }
 
