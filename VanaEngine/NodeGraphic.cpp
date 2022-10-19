@@ -36,13 +36,15 @@ void NodeGraphic::DefaultUpdate()
 
 void NodeGraphic::Draw()
 {
-	//std::cout << "inside draw" << std::endl;
+	//std::cout << "inside draw >>>ID:" << nodeID << std::endl;
 	glBindVertexArray(mesh->VAO);
 	shader->use();
-	shader->setMat4("transform", parentTransfrom * transform);
+	shader->setMat4("transform", parentTransform.GetTransform() * transform.GetTransform());
+	//std::cout << "transform Parent";
 	//std::cout << VBO << std::endl;
 	if (type == SHAPE_VERT)
 	{
+		std::cout << "inside draw VERT >>>ID:" << nodeID << std::endl;
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 	}
 	else if (type == SHAPE_MESH)
