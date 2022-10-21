@@ -4,6 +4,7 @@
 
 Input::Input()
 {
+	logInput = new Logger("Input");
 }
 
 Input::~Input()
@@ -13,33 +14,64 @@ Input::~Input()
 
 void Input::Init()
 {
-	logInput = new Logger("Input");
-	// need fixing
-	//glfwSetWindowUserPointer(GraphicSystem::GetInstance()->GetWindow(), this);
-	//glfwSetKeyCallback(GraphicSystem::GetInstance()->GetWindow(), KeyboardCallback);
-}
-
-// might need to move to outside class
-void Input::KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	// can be make outside class to send as callback
-	if (glfwGetKey(GraphicSystem::GetInstance()->GetWindow(), GLFW_KEY_W))
+	glfwSetWindowUserPointer(GraphicSystem::GetInstance()->GetWindow(), this);
+	glfwSetKeyCallback(GraphicSystem::GetInstance()->GetWindow(), KeyboardCallback);
+	this->SetKeyToAction(GLFW_KEY_UP, INPUT_KEY_UP);
+	for (int i = 0; i < MAX_KEYS; i++)
 	{
-		logInput->Log(LOG_INFO, "W is pressed.");
+		isPressedArray[i] = false;
+		previousIsPressedArray[i] = false;
 	}
 }
 
+
 void Input::Update()
 {
+	for (int i = 0; i < MAX_KEYS; i++)
+	{
+		previousIsPressedArray[i] = isPressedArray[i];
+		//isPressedArray[i] = false;
+	}
 }
 
-int Input::isPressed(unsigned int key)
+void Input::SetKeyToAction(unsigned int key, InputAction action)
 {
-
-	return 0;
+	actionKeyMap[action] = key;
 }
 
-int Input::isHold(unsigned int key)
+unsigned int Input::GetKeyFromAction(InputAction action)
 {
-	return 0;
+	return actionKeyMap[action];
+}
+
+void Input::UpdateIsPressedArray(unsigned int key, int action)
+{
+	isPressedArray[key] = static_cast<bool>(action);
+}
+
+bool Input::IsPressed(InputAction action)
+{
+	return isPressedArray[GetKeyFromAction(action)];
+}
+
+// @@ Need fixing isHold
+bool Input::IsHold(InputAction action)
+{
+	return isPressedArray[GetKeyFromAction(action)] && previousIsPressedArray[GetKeyFromAction(action)];
+}
+
+void Input::Log(LoggerGroup logGroup, std::string str)
+{
+	logInput->Log(logGroup, str);
+}
+
+// might need to move to outside class
+void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_UNKNOWN)
+	{
+		Input::GetInstance()->Log(LOG_WARNING, "KEY UNKNOWN");
+		return;
+	}
+	Input::GetInstance()->UpdateIsPressedArray(key, action);
 }

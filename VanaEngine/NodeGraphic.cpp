@@ -16,7 +16,6 @@ NodeGraphic::NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, Texture* 
 	this->texture = texture;
 	shader->use();
 	shader->setInt("texture1", 0);
-	//std::cout << "Sprite Init " << type << " " << shader << " " << mesh << " " << texture << " " << std::endl;
 }
 
 NodeGraphic::~NodeGraphic()
@@ -40,8 +39,6 @@ void NodeGraphic::Draw()
 	glBindVertexArray(mesh->VAO);
 	shader->use();
 	shader->setMat4("transform", parentTransform.GetTransform() * transform.GetTransform());
-	//std::cout << "transform Parent";
-	//std::cout << VBO << std::endl;
 	if (type == SHAPE_VERT)
 	{
 		std::cout << "inside draw VERT >>>ID:" << nodeID << std::endl;

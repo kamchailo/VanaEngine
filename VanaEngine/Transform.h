@@ -7,33 +7,32 @@ namespace Vana {
 	public:
 		Transform()
 			: transformMatrix(glm::mat4(1))
-			//, parentTransfrom(NULL)
+			, initMatrix(glm::mat4(1))
 			, translate(glm::vec3(0)), rotate(glm::vec3(0)), scale(glm::vec3(1))
 		{}
 		Transform(glm::mat4 const& pTransfrom) 
 			: transformMatrix(glm::mat4(1))
-			//, parentTransfrom(pTransfrom)
+			, initMatrix(glm::mat4(1))
 			, translate(glm::vec3(0)), rotate(glm::vec3(0)), scale(glm::vec3(1))
-			//, defaultTranslate(glm::vec3(0)), defaultRotate(glm::vec3(0)), defaultScale(glm::vec3(1))
 		{};
-		//void SetDefaultTransform(glm::vec3 translate, glm::vec3 rotate, glm::vec3 scale);
+		void SetInit(glm::vec3 translate, glm::vec3 rotate, glm::vec3 scale);
 		void Translate(glm::vec3);
 		void Rotate(glm::vec3);
 		void Scale(glm::vec3);
 		glm::mat4 const& GetTransform() const;
 		void SetTransform(glm::mat4 const matrix);
-		//glm::mat4 const& GetWorldTransform() const;
 		void UpdateTransform();
 		void ResetTransform();
+
+		glm::vec3 GetPosition();
+		glm::vec3 GetRotation();
+		glm::vec3 GetScale();
 	private:
 		// Go to Transfom
 		glm::mat4 transformMatrix;
-		//glm::mat4 parentTransfrom; // can not change by this
+		glm::mat4 initMatrix;
 		glm::vec3 translate;
 		glm::vec3 rotate;
 		glm::vec3 scale;
-		//glm::vec3 defaultTranslate;
-		//glm::vec3 defaultRotate;
-		//glm::vec3 defaultScale;
 	};
 }
