@@ -1,8 +1,12 @@
 #pragma once
+#include "pch.h"
+
 
 #ifndef VENA_CLASS_NODE
 #define VENA_CLASS_NODE
-#include "Transform.h"
+
+class Collider;
+class Component;
 
 namespace Vana {
 	// separate Transform as its own class
@@ -13,35 +17,50 @@ namespace Vana {
 		Node();
 		Node(Node*);
 		virtual void DefaultInit();
-		virtual void Init();
+		virtual void Init(); // for user
 		virtual void DefaultUpdate();
-		virtual void Update();
+		virtual void Update(); // for user
 		std::map< unsigned int, Node*> GetChildren();
 		Node const* GetChild(unsigned int);
 		Node const* GetParent() const;
 		void AddChild(Node*);
-		Transform transform;
-		Transform parentTransform;
-		//void SetDefaultTransform(glm::vec3, glm::vec3, glm::vec3);
-		//void Translate(glm::vec3);
-		//void Rotate(glm::vec3);
-		//void Scale(glm::vec3);
-		//glm::mat4* transform;
-		//glm::mat4* parentTransfrom;
+		glm::vec3 GetPosition() const;
+		glm::vec3 GetRotation() const;
+		glm::vec3 GetScale() const;
+		void SetPosition(glm::vec3 const&);
+		void SetRotation(glm::vec3 const&);
+		void SetScale(glm::vec3 const&);
+		Transform transform; // local
+		Transform parentTransform; // world = (parent->world * parent->local)
 		unsigned int nodeID;
-	protected:
+
+		template<class T>
+		T* GetComponent()
+		{
+			std::vector<Component*>::iterator it = components.begin();
+			while (it != components.end())
+			{
+				T* type = dynamic_cast<T*>(*it);
+				if (type != 0)
+				{
+					return type;
+				}
+				it = it + 1;
+			}
+			return nullptr;
+		}
+		void AddComponent(Component* component);
+
+		Collider* collider;
 	private:
-		//void UpdateTransform();
-		//void ResetTransform();
+		std::vector<Component*> components;
+
+		glm::vec3 position;
+		glm::vec3 rotation;
+		glm::vec3 scale;
+		glm::vec3 absoluteScale;
 		Node* parent;
 		std::map< unsigned int, Node*> children;
-		// Go to Transfom
-		//glm::vec3 translate;
-		//glm::vec3 rotate;
-		//glm::vec3 scale;
-		//glm::vec3 defaultTranslate;
-		//glm::vec3 defaultRotate;
-		//glm::vec3 defaultScale;
 		inline unsigned int static nodeIDMax;
 	};
 }

@@ -14,6 +14,7 @@ int GraphicSystem::Init(int width, int height)
 {
 	logGraphic = new Logger("Graphics");
 	windowSize = glm::vec2(width, height);
+	viewMatrix = glm::scale(glm::mat4(1), glm::vec3(2.0f / windowSize.x, 2.0f / windowSize.y, 1.0));
 	//std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
 	//			  Init GLFW
@@ -80,6 +81,8 @@ int GraphicSystem::GraphicUpdate()
 	}
 	// input
 	processInput(window);
+	// change viewMat
+	viewMatrix = glm::scale(glm::mat4(1), glm::vec3(2.0f / windowSize.x, 2.0f / windowSize.y, 1.0));
 	// Rendering Commands vvv
 	glClearColor(0.0f, 1.0f, 0.7f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -99,6 +102,11 @@ int GraphicSystem::GraphiceSwapBuffer()
 GLFWwindow* GraphicSystem::GetWindow()
 {
 	return window;
+}
+
+glm::mat4 GraphicSystem::GetviewMatrix() const
+{
+	return viewMatrix;
 }
 
 GraphicSystem::GraphicSystem()

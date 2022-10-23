@@ -16,5 +16,23 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "VanaDefine.h"
+#include "Logger.h"
+#include "Input.h"
+#include "Graphics.h"
+#include "Transform.h"
+#include "Mesh.h"
+#include "Shader.h"
+#include "Node.h"
+#include "NodeGraphic.h"
+//#include "Shape.h"
+#include "Collider.h"
+#include "ColliderAABB.h"
+#include "ColliderOOBB.h"
+#include "CollisionManager.h"
+
+#include "Component.h"
+#include "NodeGameObject.h"
+
+#include "VanaEngine.h"
 
 #endif //PCH_H

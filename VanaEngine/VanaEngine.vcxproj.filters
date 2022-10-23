@@ -28,6 +28,9 @@
     <Filter Include="NodeComponents">
       <UniqueIdentifier>{cde0ea79-9294-43b9-b92a-191e145ccfbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{c420428c-d85d-4733-839f-07e1b66fafa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -81,6 +84,30 @@
     <ClInclude Include="Transform.h">
       <Filter>NodeComponents</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsBody.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderAABB.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeGameObject.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentCollider.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderOOBB.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -127,6 +154,21 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>NodeComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderAABB.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeGameObject.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>NodeComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderOOBB.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

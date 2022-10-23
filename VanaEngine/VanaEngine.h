@@ -1,16 +1,7 @@
 #pragma once
 #include "pch.h"
-#include "framework.h"
-#include "Logger.h"
-#include "Graphics.h"
-#include "Input.h"
-#include "Node.h"
-#include "NodeGraphic.h"
-#include "Shader.h"
 #include "ShaderCollection.h"
-#include "Mesh.h"
 #include "MeshCollection.h"
-#include "Texture.h"
 
 //class VanaEngine
 //{
@@ -29,5 +20,6 @@ namespace Vana
 	inline GraphicSystem* graphicSystem;
 	inline Node* root;
 	inline Logger* logSystem;
+	inline CollisionManager collisionManager;
 	void Terminate();
 }

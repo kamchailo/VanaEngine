@@ -4,7 +4,7 @@
 class Actor : public NodeGraphic
 {
 public:
-	Actor(Node* parent, Texture * tex);
+	Actor(Node* parent, Texture * tex, glm::vec2 spriteSize);
 	void Init();
 	void Update();
 

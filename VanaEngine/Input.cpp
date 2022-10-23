@@ -16,7 +16,12 @@ void Input::Init()
 {
 	glfwSetWindowUserPointer(GraphicSystem::GetInstance()->GetWindow(), this);
 	glfwSetKeyCallback(GraphicSystem::GetInstance()->GetWindow(), KeyboardCallback);
+	// @@ Default to test
 	this->SetKeyToAction(GLFW_KEY_UP, INPUT_KEY_UP);
+	this->SetKeyToAction(GLFW_KEY_DOWN, INPUT_KEY_DOWN);
+	this->SetKeyToAction(GLFW_KEY_LEFT, INPUT_KEY_LEFT);
+	this->SetKeyToAction(GLFW_KEY_RIGHT, INPUT_KEY_RIGHT);
+	this->SetKeyToAction(GLFW_KEY_SPACE, INPUT_KEY_INTERACT);
 	for (int i = 0; i < MAX_KEYS; i++)
 	{
 		isPressedArray[i] = false;
@@ -65,7 +70,7 @@ void Input::Log(LoggerGroup logGroup, std::string str)
 	logInput->Log(logGroup, str);
 }
 
-// might need to move to outside class
+// @@ This might cause problem later as global function
 void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_UNKNOWN)
