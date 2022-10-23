@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Node.h"
-#include "Graphics.h"
 
 namespace Vana {
 	Node::Node()
@@ -9,14 +8,20 @@ namespace Vana {
 		this->parent = NULL;
 		this->transform = Transform();
 		this->parentTransform = Transform();
+		this->position = glm::vec3(0);
+		this->rotation = glm::vec3(0);
+		this->scale = glm::vec3(1);
 	}
 
 	Node::Node(Node* parentNode)
 	{
 		this->nodeID = ++Node::nodeIDMax;
 		this->parent = parentNode;
-		this->transform = Transform();
 		parentNode->AddChild(this);
+		this->transform = Transform();
+		this->position = glm::vec3(0);
+		this->rotation = glm::vec3(0);
+		this->scale = glm::vec3(1);
 	}
 
 	void Node::DefaultInit()
@@ -37,16 +42,26 @@ namespace Vana {
 	{
 		// Transform always update first to support GetTransforation in Update
 		transform.ResetTransform();
-		transform.UpdateTransform();
+		transform.UpdateTransform(position, rotation, scale);
+		if (collider)
+		{
+			collider->SetPosition(position);
+			collider->SetRotation(rotation);
+		}
 		// Transformation 
 		if (parent)
 		{
-			parentTransform.SetTransform(parent->parentTransform.GetTransform() * parent->transform.GetTransform());
+			parentTransform.SetTransform( parent->parentTransform.GetTransform() * parent->transform.GetTransform());
+			//std::cout << "nodeID " << nodeID << " pTransform " << parentTransform.GetTransform()[0][0] << std::endl;
+		}
+		for (Component* c : components)
+		{
+			c->Update();
 		}
 		for (const auto& child : children)
 		{
 			child.second->DefaultUpdate();
-			child.second->Update();
+			child.second->Update(); // user update
 		}
 	}
 
@@ -73,5 +88,34 @@ namespace Vana {
 	{
 		children[newChild->nodeID] = newChild;
 		newChild->parentTransform = Transform();
+	}
+
+	glm::vec3 Node::GetPosition() const
+	{
+		return position;
+	}
+	glm::vec3 Node::GetRotation() const
+	{
+		return rotation;
+	}
+	glm::vec3 Node::GetScale() const
+	{
+		return scale;
+	}
+	void Node::SetPosition(glm::vec3 const& newPosition)
+	{
+		position = newPosition;
+	}
+	void Node::SetRotation(glm::vec3 const& newRotation)
+	{
+		rotation = newRotation;
+	}
+	void Node::SetScale(glm::vec3 const& newScale)
+	{
+		scale = newScale;
+	}
+	void Node::AddComponent(Component* component)
+	{
+		components.push_back(component);
 	}
 }

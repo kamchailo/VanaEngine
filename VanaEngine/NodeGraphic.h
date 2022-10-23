@@ -30,8 +30,8 @@ enum ShapeType
 class NodeGraphic : public Vana::Node
 {
 public:
-	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, ShapeType type);
-	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, Texture* texture);
+	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, ShapeType type, glm::vec2 spriteSize);
+	NodeGraphic(Node* parentNode, Mesh* mesh, Shader* shader, Texture* texture, glm::vec2 spriteSize);
 	~NodeGraphic();
 	void DefaultInit();
 	void DefaultUpdate();
@@ -41,4 +41,5 @@ public:
 private:
 	Mesh* mesh;
 	Texture* texture;
+	glm::vec2 spriteSize;
 };

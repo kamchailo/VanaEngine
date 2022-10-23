@@ -27,9 +27,10 @@ void Vana::Update()
 	root->DefaultInit();
 	while (!GraphicSystem::GetInstance()->GraphicUpdate())
 	{
+		Input::GetInstance()->Update();
 		// All Graphic Update Goes Here
 		root->DefaultUpdate();
-
+		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 	}
 

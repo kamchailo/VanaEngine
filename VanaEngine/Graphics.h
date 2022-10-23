@@ -17,10 +17,12 @@ public:
 	int GraphicUpdate();
 	int GraphiceSwapBuffer();
 	GLFWwindow* GetWindow();
+	glm::mat4 GetviewMatrix() const;
 	inline static glm::vec2 windowSize;
 private:
 	GraphicSystem();
 	static GraphicSystem* _instance;
 	GLFWwindow* window;
 	Logger* logGraphic;
+	glm::mat4 viewMatrix;
 };

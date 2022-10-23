@@ -167,6 +167,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="ColliderAABB.h" />
+    <ClInclude Include="ColliderOOBB.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentCollider.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics.h" />
@@ -175,8 +181,10 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshCollection.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeGameObject.h" />
     <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="Texture.h" />
@@ -186,12 +194,17 @@
     <ClInclude Include="VanaEngine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderAABB.cpp" />
+    <ClCompile Include="ColliderOOBB.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshCollection.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeGameObject.cpp" />
     <ClCompile Include="NodeGraphic.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
