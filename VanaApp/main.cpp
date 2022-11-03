@@ -64,8 +64,10 @@ int main()
 	Vana::Node* nodeA = new Vana::Node(Vana::root);
 	ComponentTransform* trnfA = new ComponentTransform();
 	ComponentRenderer* rendA = new ComponentRenderer(tex, glm::vec2(100, 100));
+	ComponentPhysics* physA = new ComponentPhysics(Vana::collisionManager, glm::vec2(100, 100));
 	nodeA->AddComponent(trnfA);
 	nodeA->AddComponent(rendA);
+	nodeA->AddComponent(physA);
 	nodeA->SetPosition(glm::vec3(-200, 100, 0.0));
 
 	//Moving guys
