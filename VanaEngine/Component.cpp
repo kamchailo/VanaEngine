@@ -2,12 +2,12 @@
 #include "Component.h"
 
 
-Node* Component::GetOwner() const
+Vana::Node* Component::GetOwner() const
 {
 	return owner;
 }
 
-void Component::SetOwner(Node* newOwner)
+void Component::SetOwner(Vana::Node* newOwner)
 {
 	owner = newOwner;
 }

@@ -7,7 +7,7 @@ CollisionManager::~CollisionManager()
 {
 	for (const auto& collider : colliders)
 	{
-		delete (&collider);
+		delete (collider.second);
 	}
 }
 

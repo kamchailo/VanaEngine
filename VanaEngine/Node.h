@@ -16,14 +16,21 @@ namespace Vana {
 	public:
 		Node();
 		Node(Node*);
+		virtual ~Node();
+		// Scene Graph
+		unsigned int nodeID;
+		void AddChild(Node*);
+		Node const* GetParent() const;
+		Node const* GetChild(unsigned int);
+		std::map< unsigned int, Node*> GetChildren();
+
+		// Game Update
 		virtual void DefaultInit();
 		virtual void Init(); // for user
 		virtual void DefaultUpdate();
 		virtual void Update(); // for user
-		std::map< unsigned int, Node*> GetChildren();
-		Node const* GetChild(unsigned int);
-		Node const* GetParent() const;
-		void AddChild(Node*);
+
+		// Transform
 		glm::vec3 GetPosition() const;
 		glm::vec3 GetRotation() const;
 		glm::vec3 GetScale() const;
@@ -32,8 +39,9 @@ namespace Vana {
 		void SetScale(glm::vec3 const&);
 		Transform transform; // local
 		Transform parentTransform; // world = (parent->world * parent->local)
-		unsigned int nodeID;
 
+		// Components
+		void AddComponent(Component* component);
 		template<class T>
 		T* GetComponent()
 		{
@@ -49,19 +57,23 @@ namespace Vana {
 			}
 			return nullptr;
 		}
-		void AddComponent(Component* component);
 
+		// Physics
 		Collider* collider;
 	private:
-		std::vector<Component*> components;
 
+		// Scene Graph
+		inline unsigned int static nodeIDMax;
+		Node* parent;
+		std::map< unsigned int, Node*> children;
+		
+		// Transform
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;
-		glm::vec3 absoluteScale;
-		Node* parent;
-		std::map< unsigned int, Node*> children;
-		inline unsigned int static nodeIDMax;
+
+		// Components
+		std::vector<Component*> components;
 	};
 }
 

@@ -20,12 +20,12 @@ struct Geometry
 	// ^^^^^^^^^^^^^^^^^^
 };
 
-enum ShapeType 
-{
-	SHAPE_VERT,
-	SHAPE_MESH,
-	SHAPE_SPRITE
-};
+//enum ShapeType 
+//{
+//	SHAPE_VERT,
+//	SHAPE_MESH,
+//	SHAPE_SPRITE
+//};
 
 class NodeGraphic : public Vana::Node
 {

@@ -108,6 +108,12 @@
     <ClInclude Include="ColliderOOBB.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentRenderer.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentTransform.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -168,6 +174,12 @@
       <Filter>NodeComponents</Filter>
     </ClCompile>
     <ClCompile Include="ColliderOOBB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentRenderer.cpp">
+      <Filter>NodeComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

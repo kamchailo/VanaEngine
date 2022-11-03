@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-class Node;
+//class Node;
 class ColliderAABB;
 class ColliderOOBB;
 class CollisionManager;
@@ -55,6 +55,6 @@ protected:
 	glm::vec3 scale;
 	std::vector< glm::vec3> vertices;
 	std::vector<Collider*> collideds;
-	Node* owner;
+	Vana::Node* owner;
 private:
 };

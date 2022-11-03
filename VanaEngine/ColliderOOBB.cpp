@@ -12,7 +12,8 @@ void ColliderOOBB::Update()
 	for (int i = 0; i < vertices.size(); i++)
 	{
 		vertices[i] = transform * glm::vec4(originalVertices[i], 1.0);
-		//std::cout << "rotate: " << rotation.x << ", " << rotation.y << ", " << rotation.z << std::endl;
+		//
+		//  << "rotate: " << rotation.x << ", " << rotation.y << ", " << rotation.z << std::endl;
 		//std::cout << "transform: " << transform[0][0] << std::endl;
 		//std::cout << "vert[" << i << "]: " << vertices[i].x << ", " << vertices[i].y << ", " << vertices[i].z << std::endl
 		//	<< std::endl;
