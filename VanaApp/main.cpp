@@ -66,19 +66,31 @@ int main()
 	ComponentRenderer* rendA = new ComponentRenderer(tex, glm::vec2(100, 100));
 	nodeA->AddComponent(trnfA);
 	nodeA->AddComponent(rendA);
+	nodeA->SetPosition(glm::vec3(-200, 100, 0.0));
 
-	Actor* b = new Actor(nodeA, tex, glm::vec2(200, 50));
+	//Moving guys
+	Actor* b = new Actor(Vana::root, tex, glm::vec2(200, 50));
 
-	Vana::Node* nodebb = new Vana::Node(b);
+	Vana::Node* nodebb = new Vana::Node(Vana::root);
 	ComponentTransform* trnfBb = new ComponentTransform();
 	ComponentRenderer* rendBb = new ComponentRenderer(tex, glm::vec2(50, 50));
-	nodeA->AddComponent(trnfBb);
-	nodeA->AddComponent(rendBb);
-	nodebb->SetPosition(glm::vec3(200, 100, 1.0));
+	ComponentPhysics* physBb = new ComponentPhysics(Vana::collisionManager, glm::vec2(50, 50));
+	nodebb->AddComponent(trnfBb);
+	nodebb->AddComponent(rendBb);
+	nodebb->AddComponent(physBb);
+
+	nodebb->SetPosition(glm::vec3(200, 100, 0.0));
 
 
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//Actor* c = new Actor(b, tex, glm::vec2(75, 75));
+	
+
+
+	//std::cout << b->nodeID << std::endl;
+	//std::cout << nodebb->GetParent()->nodeID << std::endl;
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	Vana::Update();
 
 
