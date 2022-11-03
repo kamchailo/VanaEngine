@@ -1,10 +1,10 @@
 #pragma once
 #include <NodeGraphic.h>
 
-class Actor : public NodeGraphic
+class Actor : public Vana::Node
 {
 public:
-	Actor(Node* parent, Texture * tex, glm::vec2 spriteSize);
+	Actor(Vana::Node* parent, Texture * tex, glm::vec2 spriteSize);
 	void Init();
 	void Update();
 
