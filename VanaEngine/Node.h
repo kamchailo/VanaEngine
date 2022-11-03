@@ -59,7 +59,7 @@ namespace Vana {
 		}
 
 		// Physics
-		Collider* collider;
+		//Collider* collider;
 	private:
 
 		// Scene Graph

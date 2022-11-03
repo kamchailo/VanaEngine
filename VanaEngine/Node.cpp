@@ -19,6 +19,7 @@ namespace Vana {
 		this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
+		this->parentTransform = parentNode->parentTransform;
 		this->position = glm::vec3(0);
 		this->rotation = glm::vec3(0);
 		this->scale = glm::vec3(1);
@@ -34,6 +35,10 @@ namespace Vana {
 
 	void Node::DefaultInit()
 	{
+		for (Component* c : components)
+		{
+			c->Init();
+		}
 		for (const auto& child : children)
 		{
 			child.second->DefaultInit();
@@ -51,11 +56,11 @@ namespace Vana {
 		// Transform always update first to support GetTransforation in Update
 		//transform.ResetTransform();
 		//transform.UpdateTransform(position, rotation, scale);
-		if (collider)
+		/*if (collider)
 		{
 			collider->SetPosition(position);
 			collider->SetRotation(rotation);
-		}
+		}*/
 		// Transformation 
 		//if (parent)
 		//{

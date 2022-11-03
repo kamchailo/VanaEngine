@@ -19,8 +19,9 @@ void ComponentTransform::Update()
 	{
 		owner->parentTransform.SetTransform(
 			owner->GetParent()->parentTransform.GetTransform() 
-			* 
-			owner->GetParent()->transform.GetTransform());
+			* owner->GetParent()->transform.GetTransform());
+		
+		//std::cout << "nodeID " << owner->nodeID << " pTransform " << owner->parentTransform.GetTransform()[3][0] << std::endl;
 	}
 
 }

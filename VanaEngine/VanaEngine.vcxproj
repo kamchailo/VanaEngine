@@ -172,10 +172,9 @@
     <ClInclude Include="ColliderOOBB.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="ComponentCollider.h" />
+    <ClInclude Include="ComponentPhysics.h" />
     <ClInclude Include="ComponentRenderer.h" />
     <ClInclude Include="ComponentTransform.h" />
-    <ClInclude Include="Event.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Input.h" />
@@ -200,6 +199,7 @@
     <ClCompile Include="ColliderOOBB.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentPhysics.cpp" />
     <ClCompile Include="ComponentRenderer.cpp" />
     <ClCompile Include="ComponentTransform.cpp" />
     <ClCompile Include="Graphics.cpp" />

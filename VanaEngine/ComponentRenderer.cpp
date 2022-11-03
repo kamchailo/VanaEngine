@@ -7,6 +7,7 @@ ComponentRenderer::ComponentRenderer()
 	this->mesh = MeshCollection::meshSprite;
 	this->shader = ShaderCollection::default2D;
 	this->texture = NULL;
+	this->spriteSize = glm::vec2(99.0,99.0);
 }
 
 ComponentRenderer::ComponentRenderer(Mesh* mesh, Shader* shader, Texture* texture, glm::vec2 size)
@@ -50,7 +51,12 @@ void ComponentRenderer::Draw()
 	glBindVertexArray(mesh->VAO);
 	shader->use();
 
-	shader->setMat4("transform", GraphicSystem::GetInstance()->GetviewMatrix() * owner->parentTransform.GetTransform() * glm::scale(owner->transform.GetTransform(), glm::vec3(spriteSize / 2.0f, 1.0)));
+	shader->setMat4("transform", 
+		GraphicSystem::GetInstance()->GetviewMatrix() 
+		* owner->parentTransform.GetTransform() 
+		* glm::scale(owner->transform.GetTransform(), glm::vec3(spriteSize / 2.0f, 1.0))
+	);
+
 	if (type == SHAPE_VERT)
 	{
 		glDrawArrays(GL_TRIANGLES, 0, 3);

@@ -33,56 +33,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NodeGraphic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderCollection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VanaEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MeshCollection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VanaDefine.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>NodeComponents</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>NodeComponents</Filter>
@@ -102,9 +57,6 @@
     <ClInclude Include="NodeGameObject.h">
       <Filter>Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentCollider.h">
-      <Filter>NodeComponents</Filter>
-    </ClInclude>
     <ClInclude Include="ColliderOOBB.h">
       <Filter>Physics</Filter>
     </ClInclude>
@@ -113,6 +65,51 @@
     </ClInclude>
     <ClInclude Include="ComponentTransform.h">
       <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentPhysics.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCollection.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCollection.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="VanaEngine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +155,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>Inputs</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>NodeComponents</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
@@ -173,14 +167,20 @@
     <ClCompile Include="Component.cpp">
       <Filter>NodeComponents</Filter>
     </ClCompile>
-    <ClCompile Include="ColliderOOBB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ComponentRenderer.cpp">
       <Filter>NodeComponents</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
     <ClCompile Include="ComponentTransform.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>NodeComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderOOBB.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentPhysics.cpp">
+      <Filter>NodeComponents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

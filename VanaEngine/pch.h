@@ -34,6 +34,7 @@
 #include "Component.h"
 #include "ComponentTransform.h"
 #include "ComponentRenderer.h"
+#include "ComponentPhysics.h"
 //#include "NodeGameObject.h"
 
 #include "VanaEngine.h"

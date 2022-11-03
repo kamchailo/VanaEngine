@@ -55,6 +55,5 @@ protected:
 	glm::vec3 scale;
 	std::vector< glm::vec3> vertices;
 	std::vector<Collider*> collideds;
-	Vana::Node* owner;
 private:
 };
