@@ -7,7 +7,7 @@ CollisionManager::~CollisionManager()
 {
 	for (const auto& collider : colliders)
 	{
-		delete (&collider);
+		delete (collider.second);
 	}
 }
 
@@ -52,7 +52,8 @@ void CollisionManager::Update()
 
 void CollisionManager::DeleteCollider(Collider* collider)
 {
-
+	colliders.erase(collider->colliderID);
+	delete collider;
 }
 
 void CollisionManager::BoardcastCollisionMessage(Collider* subject)

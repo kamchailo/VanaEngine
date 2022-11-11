@@ -22,8 +22,9 @@
 #include "Transform.h"
 #include "Mesh.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "Node.h"
-#include "NodeGraphic.h"
+//#include "NodeGraphic.h"
 //#include "Shape.h"
 #include "Collider.h"
 #include "ColliderAABB.h"
@@ -31,7 +32,10 @@
 #include "CollisionManager.h"
 
 #include "Component.h"
-#include "NodeGameObject.h"
+#include "ComponentTransform.h"
+#include "ComponentRenderer.h"
+#include "ComponentPhysics.h"
+//#include "NodeGameObject.h"
 
 #include "VanaEngine.h"
 

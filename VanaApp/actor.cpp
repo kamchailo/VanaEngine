@@ -5,8 +5,14 @@
 float i = 0;
 //float x = 400, y = 400;
 float x = 0, y = 0;
-Actor::Actor(Node* parent, Texture* tex, glm::vec2 spriteSize) : NodeGraphic(parent, MESH_SPRITE, SHADER_SPRITE, tex, spriteSize)
+Actor::Actor(Vana::Node* parent, Texture* tex, glm::vec2 spriteSize) : Node(parent)
 {
+	ComponentTransform* ct = new ComponentTransform();
+	ComponentRenderer* cr = new ComponentRenderer(tex, spriteSize);
+	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, spriteSize);
+	this->AddComponent(ct);
+	this->AddComponent(cr);
+	this->AddComponent(cp);
 }
 
 void Actor::Init()

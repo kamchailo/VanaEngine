@@ -19,13 +19,26 @@ namespace Vana {
 		this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
+		this->parentTransform = parentNode->parentTransform;
 		this->position = glm::vec3(0);
 		this->rotation = glm::vec3(0);
 		this->scale = glm::vec3(1);
 	}
 
+	Node::~Node()
+	{
+		for (int i = 0; i < components.size(); i++)
+		{
+			delete components[i];
+		}
+	}
+
 	void Node::DefaultInit()
 	{
+		for (Component* c : components)
+		{
+			c->Init();
+		}
 		for (const auto& child : children)
 		{
 			child.second->DefaultInit();
@@ -41,19 +54,19 @@ namespace Vana {
 	void Node::DefaultUpdate()
 	{
 		// Transform always update first to support GetTransforation in Update
-		transform.ResetTransform();
-		transform.UpdateTransform(position, rotation, scale);
-		if (collider)
+		//transform.ResetTransform();
+		//transform.UpdateTransform(position, rotation, scale);
+		/*if (collider)
 		{
 			collider->SetPosition(position);
 			collider->SetRotation(rotation);
-		}
+		}*/
 		// Transformation 
-		if (parent)
-		{
-			parentTransform.SetTransform( parent->parentTransform.GetTransform() * parent->transform.GetTransform());
+		//if (parent)
+		//{
+			//parentTransform.SetTransform( parent->parentTransform.GetTransform() * parent->transform.GetTransform());
 			//std::cout << "nodeID " << nodeID << " pTransform " << parentTransform.GetTransform()[0][0] << std::endl;
-		}
+		//}
 		for (Component* c : components)
 		{
 			c->Update();
@@ -116,6 +129,7 @@ namespace Vana {
 	}
 	void Node::AddComponent(Component* component)
 	{
+		component->SetOwner(this);
 		components.push_back(component);
 	}
 }

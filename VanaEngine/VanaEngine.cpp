@@ -25,6 +25,50 @@ int Vana::Init(int width, int height)
 void Vana::Update()
 {
 	root->DefaultInit();
+
+
+	// while engine working
+
+	// root->DefaultUpdate();
+	// collisionManager.Update();
+
+	// input
+	
+	// graphic update
+
+	double MS_PER_UPDATE = 1.0 / 60.0;
+
+	double previousTime = glfwGetTime();
+	double lag = 0.0;
+
+	int count = 0;
+	
+	//while (true)
+	//{
+	//	double currentTime = glfwGetTime();
+	//	double elapsedTime = currentTime - previousTime;
+	//	previousTime = currentTime;
+	//	lag += elapsedTime;
+
+	//	Input::GetInstance()->Update();
+	//	count = 0;
+	//	while (lag >= MS_PER_UPDATE)
+	//	{
+	//		//std::cout << "INSIDE SUPER UPDATE" << std::endl;
+	//		collisionManager.Update();
+	//		root->DefaultUpdate();
+	//		++count;
+	//		if(count >0)
+	//			std::cout << count << " ||| " << lag << std::endl;
+	//		lag -= MS_PER_UPDATE;
+	//	}
+
+	//	GraphicSystem::GetInstance()->GraphicUpdate();
+	//	GraphicSystem::GetInstance()->GraphiceSwapBuffer();
+	//}
+
+
+	//// has to set to wait for dt
 	while (!GraphicSystem::GetInstance()->GraphicUpdate())
 	{
 		Input::GetInstance()->Update();
@@ -34,6 +78,7 @@ void Vana::Update()
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 	}
 
+	Vana::Terminate();
 }
 
 void Vana::Terminate()
