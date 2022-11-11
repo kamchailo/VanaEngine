@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Component.h"
 
-
 Vana::Node* Component::GetOwner() const
 {
 	return owner;

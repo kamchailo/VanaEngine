@@ -30,6 +30,7 @@
 #include "ColliderAABB.h"
 #include "ColliderOOBB.h"
 #include "CollisionManager.h"
+#include "PhysicsBody.h"
 
 #include "Component.h"
 #include "ComponentTransform.h"

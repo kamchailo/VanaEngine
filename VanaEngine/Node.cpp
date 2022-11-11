@@ -53,20 +53,6 @@ namespace Vana {
 
 	void Node::DefaultUpdate()
 	{
-		// Transform always update first to support GetTransforation in Update
-		//transform.ResetTransform();
-		//transform.UpdateTransform(position, rotation, scale);
-		/*if (collider)
-		{
-			collider->SetPosition(position);
-			collider->SetRotation(rotation);
-		}*/
-		// Transformation 
-		//if (parent)
-		//{
-			//parentTransform.SetTransform( parent->parentTransform.GetTransform() * parent->transform.GetTransform());
-			//std::cout << "nodeID " << nodeID << " pTransform " << parentTransform.GetTransform()[0][0] << std::endl;
-		//}
 		for (Component* c : components)
 		{
 			c->Update();

@@ -1,15 +1,19 @@
 #include "pch.h"
 #include "ComponentPhysics.h"
 
-ComponentPhysics::ComponentPhysics(CollisionManager& manager, glm::vec2 size)
+ComponentPhysics::ComponentPhysics(CollisionManager& _manager, glm::vec2 size)
 {
-	this->collider = manager.SpawnCollider(COLLIDER_AABB, size.x, size.y);
-	std::cout << "Collider ID: " << collider->colliderID << std::endl;
+	this->manager = &_manager;
+	Collider* collider = this->manager->SpawnCollider(COLLIDER_AABB, size.x, size.y);
+	body = new PhysicsBody(1, this, collider);
+	//this->collider = manager.SpawnCollider(COLLIDER_AABB, size.x, size.y);
+	//std::cout << "Collider ID: " << collider->colliderID << std::endl;
 }
 
 ComponentPhysics::~ComponentPhysics()
 {
-
+	this->manager->DeleteCollider(body->GetCollider());
+	delete body;
 }
 
 void ComponentPhysics::Init()
@@ -24,8 +28,12 @@ void ComponentPhysics::Update()
 	//	<< ", " << collider->GetPosition().z
 	//	<< std::endl;
 
-	collider->SetPosition(owner->GetPosition());
-	collider->SetRotation(owner->GetRotation());
+	body->Integrate();
+
+	//collider->SetPosition(owner->GetPosition());
+	//collider->SetRotation(owner->GetRotation());
+
+
 }
 
 void ComponentPhysics::Shutdown()
