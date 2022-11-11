@@ -5,10 +5,13 @@ unsigned int CollisionManager::MAX_COLLIDER_ID = 0;
 
 CollisionManager::~CollisionManager()
 {
+	/*
+	* Let PhysicsComponent delete their collider
 	for (const auto& collider : colliders)
 	{
 		delete (collider.second);
 	}
+	*/
 }
 
 Collider* CollisionManager::SpawnCollider(ColliderType type, float width, float height)

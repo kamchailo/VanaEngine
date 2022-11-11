@@ -39,6 +39,9 @@ void ColliderAABB::Update()
 		std::cout << "YELLING THAT Collider[" << colliderID << "] has collision with " << collideds.size() << " colliders" << std::endl;
 	}
 
+	// @@ Add Support Scale and Parent Transform
+
+
 }
 
 void ColliderAABB::SetPosition(glm::vec3 newPosition)

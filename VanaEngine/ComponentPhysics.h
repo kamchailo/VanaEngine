@@ -10,6 +10,8 @@ public:
 	void Update();
 	void Shutdown();
 	void HandleEvent();
+	PhysicsBody* body;
 private:
-	Collider* collider;
+	//Collider* collider;
+	CollisionManager* manager;
 };
