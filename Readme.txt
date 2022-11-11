@@ -6,6 +6,13 @@ Control :
 - Arrow-keys for direction
 - Spacebar for rotate clockwise
 
+// 3 mov 22
+GameObject
+
+Moved Transform, Render and Collision Update from Node to components
+and make class Node support Components.
+
+// 23 oct 22
 Collision Design :
 - User use CollisionManager to spawnCollider and return an address to a new collider
 and the manager also keep as a list (std::vector). 
