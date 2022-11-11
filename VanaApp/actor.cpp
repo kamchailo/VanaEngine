@@ -30,12 +30,12 @@ void Actor::Update()
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_DOWN))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		y -= 0.1;
+		y += -0.1;
 	}
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_LEFT))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		x -= 0.1;
+		x += -0.1;
 	}
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_RIGHT))
 	{
@@ -43,9 +43,11 @@ void Actor::Update()
 		x += 0.1;
 	}
 	//std::cout << "BBB";
-	SetPosition(glm::vec3(x, y, 0));
+	//SetPosition(glm::vec3(x, y, 0));
 
+	PhysicsBody* bod = GetComponent<ComponentPhysics>()->body;
 
+	bod->SetVelocity(glm::vec3(x, y, 0));
 
 
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_INTERACT))

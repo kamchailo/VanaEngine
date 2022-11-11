@@ -82,6 +82,7 @@ int main()
 	nodebb->AddComponent(physBb);
 
 	nodebb->SetPosition(glm::vec3(200, 100, 0.0));
+	nodebb->SetRotation(glm::vec3(0, 0, 40));
 
 
 
