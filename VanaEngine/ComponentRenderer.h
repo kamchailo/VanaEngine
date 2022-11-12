@@ -17,7 +17,7 @@ public:
 	void Init();
 	void Update();
 	void Shutdown();
-	void HandleEvent();
+	virtual void HandleEvent(Event* _event);
 	void Draw();
 private:
 	ShapeType type;

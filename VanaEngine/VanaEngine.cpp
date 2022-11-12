@@ -76,6 +76,7 @@ void Vana::Update()
 		root->DefaultUpdate();
 		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
+		coreEventManager.DispatchEvent(root);
 	}
 
 	Vana::Terminate();

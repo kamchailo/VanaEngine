@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CollisionManager.h"
+#include "VanaEngine.h"
 
 unsigned int CollisionManager::MAX_COLLIDER_ID = 0;
 
@@ -51,6 +52,7 @@ void CollisionManager::Update()
 	}
 	BoardScan();
 	NarrowScan();
+	BoardcastCollisionMessage();
 }
 
 void CollisionManager::DeleteCollider(Collider* collider)
@@ -59,9 +61,16 @@ void CollisionManager::DeleteCollider(Collider* collider)
 	delete collider;
 }
 
-void CollisionManager::BoardcastCollisionMessage(Collider* subject)
+void CollisionManager::BoardcastCollisionMessage()
 {
-
+	for (int i = 0; i < narrowColliders.size(); ++i)
+	{
+		if (narrowColliders[i].a->GetCollideds().size() > 0)
+		{
+			EventCollision* e = new EventCollision(new EventCollisionMessage(narrowColliders[i].a));
+			Vana::coreEventManager.AddEvent(e);
+		}
+	}
 }
 
 void CollisionManager::BoardScan()
@@ -130,6 +139,7 @@ void CollisionManager::NarrowScan()
 		if (colliderA->Collide(colliderB))
 		{
 			//std::cout << "NARROW FOUND COLLISION" << std::endl;
+			// @@ optimized by add both
 			narrowColliders[i].a->AddCollided(colliderB);
 		}
 	}

@@ -69,6 +69,19 @@ namespace Vana {
 		// To be overrided by user
 	}
 
+	void Node::HandleEvent(Event* _event)
+	{
+		//std::cout << "inside handle event" << std::endl;
+		for (Component* c : components)
+		{
+			c->HandleEvent(_event);
+		}
+		for (const auto& child : children)
+		{
+			child.second->HandleEvent(_event);
+		}
+	}
+
 	std::map<unsigned int, Node*> Node::GetChildren()
 	{
 		return children;

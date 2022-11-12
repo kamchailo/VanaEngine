@@ -8,35 +8,44 @@
 #define PCH_H
 
 // add headers that you want to pre-compile here
+// STL and thrid party
 #include "framework.h"
 #include <iostream>
 #include <vector>
+#include <list>
 #include <map>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "VanaDefine.h"
+
+// Utilities
 #include "Logger.h"
 #include "Input.h"
+#include "Event.h"
+#include "EventManager.h"
+#include "EventCollision.h"
+
+// Core
 #include "Graphics.h"
 #include "Transform.h"
 #include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "Node.h"
-//#include "NodeGraphic.h"
-//#include "Shape.h"
+
+// Physics
 #include "Collider.h"
 #include "ColliderAABB.h"
 #include "ColliderOOBB.h"
 #include "CollisionManager.h"
 #include "PhysicsBody.h"
 
+// Components
 #include "Component.h"
 #include "ComponentTransform.h"
 #include "ComponentRenderer.h"
 #include "ComponentPhysics.h"
-//#include "NodeGameObject.h"
 
 #include "VanaEngine.h"
 

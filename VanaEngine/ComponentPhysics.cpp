@@ -22,24 +22,27 @@ void ComponentPhysics::Init()
 
 void ComponentPhysics::Update()
 {
-	//std::cout << "Update Phys Comp : " << collider->colliderID
-	//	<< " position : " << collider->GetPosition().x
-	//	<< ", " << collider->GetPosition().y
-	//	<< ", " << collider->GetPosition().z
-	//	<< std::endl;
-
 	body->Integrate();
-
-	//collider->SetPosition(owner->GetPosition());
-	//collider->SetRotation(owner->GetRotation());
-
-
 }
 
 void ComponentPhysics::Shutdown()
 {
 }
 
-void ComponentPhysics::HandleEvent()
+void ComponentPhysics::HandleEvent(Event* _event)
 {
+	EventCollision* e = dynamic_cast<EventCollision*>(_event);
+	if (e)
+	{
+		//EventCollisionMessage* msg = dynamic_cast<EventCollisionMessage*>(e->GetUserData());
+		EventCollisionMessage* msg = reinterpret_cast<EventCollisionMessage*>(e->GetUserData());
+		std::cout << "There is EventCollision between cID "
+			<< msg->origin->colliderID
+			<< " with ";
+		for (int i = 0; i < msg->origin->GetCollideds().size(); ++i)
+		{
+			std::cout << " cID[" << msg->origin->GetCollideds()[i]->colliderID <<"] , ";
+		}
+		std::cout << std::endl;
+	}
 }

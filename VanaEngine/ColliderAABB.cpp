@@ -3,7 +3,6 @@
 
 void ColliderAABB::Update()
 {
-
 	// Recalculate bounding box
 	// new maxPoint and minPoint
 	// simulate 4 point
@@ -36,7 +35,8 @@ void ColliderAABB::Update()
 	// Boardcast message
 	if (collideds.size() > 0)
 	{
-		std::cout << "YELLING THAT Collider[" << colliderID << "] has collision with " << collideds.size() << " colliders" << std::endl;
+
+		//std::cout << "YELLING THAT Collider[" << colliderID << "] has collision with " << collideds.size() << " colliders" << std::endl;
 	}
 
 	// @@ Add Support Scale and Parent Transform
@@ -101,7 +101,6 @@ bool ColliderAABB::Collide(ColliderOOBB* collided)
 		//std::cout << "==================================================" << std::endl
 		//	<< "axis: " << axis.x << ", " << axis.y << ", " << axis.z << std::endl
 		//	<< "Vertices A" << std::endl;
-		
 
 		glm::vec3 vertexPosition = colliderA->GetPosition() + colliderA->GetVertices()[0];
 		float minA = glm::dot(vertexPosition, axis)
