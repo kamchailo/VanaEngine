@@ -21,5 +21,6 @@ namespace Vana
 	inline Node* root;
 	inline Logger* logSystem;
 	inline CollisionManager collisionManager;
+	inline EventManager coreEventManager;
 	void Terminate();
 }

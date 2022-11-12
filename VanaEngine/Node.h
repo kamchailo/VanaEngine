@@ -30,6 +30,9 @@ namespace Vana {
 		virtual void DefaultUpdate();
 		virtual void Update(); // for user
 
+		// Event
+		void HandleEvent(Event* _event);
+
 		// Transform
 		glm::vec3 GetPosition() const;
 		glm::vec3 GetRotation() const;

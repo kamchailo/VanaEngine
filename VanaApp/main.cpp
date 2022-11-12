@@ -31,35 +31,7 @@ int main()
 {
 	Vana::Init(800, 600);
 
-
-	//Mesh* triMesh = new Mesh(vert1, sizeof(vert1));
-	//Mesh* rectMesh = new Mesh(rect, sizeof(rect), indices, sizeof(indices));
-
 	Texture* tex = new Texture("../resources/textures/sharkey.jpg");
-
-	//Collider* aAABB = Vana::collisionManager.SpawnCollider(COLLIDER_AABB, 100, 200);
-	//aAABB->GenerateNarrowCollider(Vana::collisionManager, COLLIDER_OOBB);
-	//Collider* bAABB = Vana::collisionManager.SpawnCollider(COLLIDER_AABB, 300, 100);
-	//bAABB->GenerateNarrowCollider(Vana::collisionManager, COLLIDER_OOBB);
-	//Collider* cAABB = Vana::collisionManager.SpawnCollider(COLLIDER_AABB, 100, 100);
-	//cAABB->GenerateNarrowCollider(Vana::collisionManager, COLLIDER_OOBB);
-
-
-	//Actor* a = new Actor(Vana::root, tex, glm::vec2(100,200));
-	////a->SetPosition(glm::vec3(-50, -50, 0));
-	//a->collider = aAABB;
-	//ActorChild* b = new ActorChild(Vana::root, tex, glm::vec2(300, 100));
-	//b->collider = bAABB;
-	//b->SetPosition(glm::vec3(200, 200, 0.0));
-
-	//ActorChild* c = new ActorChild(Vana::root, tex, glm::vec2(100, 100));
-	//c->collider = cAABB;
-	//c->SetPosition(glm::vec3(-50, 200, 0.0));
-
-	//b->SetScale(glm::vec3(1.5, 1.5, 1.0));
-	//b->SetScale(glm::vec3(2));
-
-	//Collider* collider = Vana::collisionManager.SpawnCollider(COLLIDER_AABB, 100, 100);
 
 	Vana::Node* nodeA = new Vana::Node(Vana::root);
 	ComponentTransform* trnfA = new ComponentTransform();

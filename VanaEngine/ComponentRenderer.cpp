@@ -41,7 +41,7 @@ void ComponentRenderer::Shutdown()
 {
 }
 
-void ComponentRenderer::HandleEvent()
+void ComponentRenderer::HandleEvent(Event* _event)
 {
 }
 

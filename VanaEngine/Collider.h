@@ -30,12 +30,11 @@ public:
 	virtual bool Collide(ColliderOOBB*) = 0;
 	//virtual bool Collide(ColliderCircle*) = 0;
 	// @@ Figure out way to assign narrowCollider
-	void GenerateNarrowCollider(CollisionManager& manager, ColliderType type)
-	{
-	};
+	//void GenerateNarrowCollider(CollisionManager& manager, ColliderType type) {};
 
 	std::vector<glm::vec3>& GetVertices() { return vertices; };
 	//virtual void CheckCollision(std::vector<Collider*> const* colliders) = 0;
+	std::vector<Collider*>& GetCollideds() { return collideds; };
 	void AddCollided(Collider* collider) {
 		collideds.push_back(collider);
 	}

@@ -31,6 +31,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{c420428c-d85d-4733-839f-07e1b66fafa7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{c1f4aca0-44a3-4a50-8b72-2a6c7d7ad3ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeGraphic.h">
@@ -112,7 +115,13 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>Utilities</Filter>
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventCollision.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +196,12 @@
     </ClCompile>
     <ClCompile Include="PhysicsBody.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="EventCollision.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

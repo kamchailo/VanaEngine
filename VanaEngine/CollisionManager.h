@@ -26,7 +26,7 @@ public:
 	Collider* SpawnCollider(ColliderType type, float width, float height);
 	void Update();
 	void DeleteCollider(Collider* collider);
-	void BoardcastCollisionMessage(Collider* subject);
+	void BoardcastCollisionMessage();
 	void BoardScan();
 	void NarrowScan();
 	bool DetectCollision(ColliderAABB* a, ColliderAABB* b);

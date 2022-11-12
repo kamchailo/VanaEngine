@@ -30,6 +30,6 @@ void ComponentTransform::Shutdown()
 {
 }
 
-void ComponentTransform::HandleEvent()
+void ComponentTransform::HandleEvent(Event* _event)
 {
 }
