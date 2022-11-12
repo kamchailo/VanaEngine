@@ -50,6 +50,9 @@ void Actor::Update()
 	bod->SetVelocity(glm::vec3(x, y, 0));
 
 
+	x -= x / 20;
+	y -= y / 20;
+
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_INTERACT))
 	{
 		i -= 0.1;
