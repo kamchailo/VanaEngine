@@ -15,6 +15,20 @@ namespace Vana {
 
 	Node::Node(Node* parentNode)
 	{
+		this->name = "noname";
+		this->nodeID = ++Node::nodeIDMax;
+		this->parent = parentNode;
+		parentNode->AddChild(this);
+		this->transform = Transform();
+		this->parentTransform = parentNode->parentTransform;
+		this->position = glm::vec3(0);
+		this->rotation = glm::vec3(0);
+		this->scale = glm::vec3(1);
+	}
+
+	Node::Node(std::string name, Node* parentNode)
+	{
+		this->name = name;
 		this->nodeID = ++Node::nodeIDMax;
 		this->parent = parentNode;
 		parentNode->AddChild(this);

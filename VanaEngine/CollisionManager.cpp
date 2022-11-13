@@ -63,6 +63,7 @@ void CollisionManager::DeleteCollider(Collider* collider)
 
 void CollisionManager::BoardcastCollisionMessage()
 {
+	// @@ Optimized by remove non-collided collider
 	for (int i = 0; i < narrowColliders.size(); ++i)
 	{
 		if (narrowColliders[i].a->GetCollideds().size() > 0)
@@ -88,19 +89,6 @@ void CollisionManager::BoardScan()
 					//std::cout << "FOUND COLLISION" << std::endl;
 					narrowColliders.push_back(NarrowMessage(colliderI.second, colliderJ.second));
 				}
-
-
-				//if (colliderI.second->type == COLLIDER_AABB && colliderJ.second->type == COLLIDER_AABB)
-				//{
-
-
-				//	if (DetectCollision(dynamic_cast<ColliderAABB*>(colliderI.second), dynamic_cast<ColliderAABB*>(colliderJ.second)))
-				//	{
-				//		std::cout << "FOUND COLLISION" << std::endl;
-				//		// colliderI board collide with colliderJ
-				//		narrowColliders.push_back(NarrowMessage(colliderI.second, colliderJ.second));
-				//	}
-				//}
 			}
 		}
 	}
