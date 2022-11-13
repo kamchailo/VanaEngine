@@ -20,7 +20,8 @@ private:
 	friend NodeFactory;
 	static const std::string NODE_ROOT;
 	static const std::string NODE_CHILDREN;
-	static const std::string BODY_2D;
+	static const std::string NODE_BODY_2D;
+	static const std::string NODE_SPRITE;
 	static const std::string NAME;
 	static const std::string POSITION;
 	static const std::string ROTATION;
