@@ -185,6 +185,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshCollection.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="NodeFactory.h" />
     <ClInclude Include="NodeGameObject.h" />
     <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshCollection.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeFactory.cpp" />
     <ClCompile Include="NodeGameObject.cpp" />
     <ClCompile Include="NodeGraphic.cpp" />
     <ClCompile Include="pch.cpp">
@@ -233,4 +235,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties test_1json__JsonSchema="https://appsemble.app/api.json" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

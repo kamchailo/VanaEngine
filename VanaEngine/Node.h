@@ -16,6 +16,7 @@ namespace Vana {
 	public:
 		Node();
 		Node(Node*);
+		Node(std::string,Node*);
 		virtual ~Node();
 		// Scene Graph
 		unsigned int nodeID;
@@ -64,6 +65,8 @@ namespace Vana {
 		// Physics
 		//Collider* collider;
 	private:
+		// Editor
+		std::string name;
 
 		// Scene Graph
 		inline unsigned int static nodeIDMax;

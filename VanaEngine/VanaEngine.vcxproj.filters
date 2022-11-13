@@ -123,6 +123,9 @@
     <ClInclude Include="EventCollision.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="NodeFactory.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -202,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFactory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

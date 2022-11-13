@@ -32,13 +32,6 @@ void ColliderAABB::Update()
 		//	<< " maxPoint: " << maxPoint.x << ", " << maxPoint.y
 		//	<< std::endl;
 	}
-	// Boardcast message
-	if (collideds.size() > 0)
-	{
-
-		//std::cout << "YELLING THAT Collider[" << colliderID << "] has collision with " << collideds.size() << " colliders" << std::endl;
-	}
-
 	// @@ Add Support Scale and Parent Transform
 
 
