@@ -1,0 +1,33 @@
+{
+  "root": 
+  {
+    "Children" : 
+    [
+      {
+        "Body2D" :
+        {
+          "Name" : "n1",
+          "Position" : [-300,100,0],
+          "Rotation" : [0,0,0],
+          "Scale" : [1,1,1],
+          "Width" : 100,
+          "Height" : 100,
+          "Texture" : "../resources/textures/sharkey.jpg"
+        }
+      },
+      {
+        "Body2D": 
+        {
+          "Name": "n2",
+          "Position" : [200,100,0],
+          "Rotation" : [0,0,60],
+          "Scale" : [1,1,1],
+          "Width" : 200,
+          "Height" : 50,
+          "Texture" : "../resources/textures/sharkey.jpg"
+        }
+      }
+    ]
+  }
+}
+
