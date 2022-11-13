@@ -12,7 +12,23 @@
           "Scale" : [1,1,1],
           "Width" : 100,
           "Height" : 100,
-          "Texture" : "../resources/textures/sharkey.jpg"
+          "Texture" : "../resources/textures/sharkey.jpg",
+          "Children" : 
+          [
+            {
+              "Sprite" :
+              {
+                 "Name" : "s1-1",
+                "Position" : [150,150,0],
+                "Rotation" : [0,0,45],
+                "Scale" : [1,1,1],
+                "Width" : 100,
+                "Height" : 100,
+                "Texture" : "../resources/textures/sharkey.jpg",
+                "Children" : []
+              }
+            }
+          ]
         }
       },
       {
@@ -24,7 +40,8 @@
           "Scale" : [1,1,1],
           "Width" : 200,
           "Height" : 50,
-          "Texture" : "../resources/textures/sharkey.jpg"
+          "Texture" : "../resources/textures/sharkey.jpg",
+          "Children": []
         }
       }
     ]

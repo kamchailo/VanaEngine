@@ -6,10 +6,21 @@ Control :
 - Arrow-keys for direction
 - Spacebar for rotate clockwise
 
-// 3 mov 22
+// 12 nov 22
+Serializer :
+- VanaApp now create scene from JSON file
+
+// 11 nov 22
+Physics Body :
+- Add Physics Body which support SetVelocity() SetAcceleration() AddForce()
+Event System :
+- CollisionManager can now boardcast collision event 
+- Each components in the root can response to message in HandleEvent(Event*)
+
+// 3 nov 22
 GameObject
 
-Moved Transform, Render and Collision Update from Node to components
+- Moved Transform, Render and Collision Update from Node to components
 and make class Node support Components.
 
 // 23 oct 22
