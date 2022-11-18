@@ -8,7 +8,7 @@ void ComponentTransform::Init()
 {
 }
 
-void ComponentTransform::Update()
+void ComponentTransform::Update(double _dt)
 {
 	owner->transform.ResetTransform();
 	owner->transform.UpdateTransform(

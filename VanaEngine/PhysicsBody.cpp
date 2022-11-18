@@ -19,17 +19,17 @@ PhysicsBody::~PhysicsBody()
 
 }
 
-void PhysicsBody::Integrate()
+void PhysicsBody::Integrate(double _dt)
 {
 	position = physicsComponent->GetOwner()->GetPosition();
 	rotation = physicsComponent->GetOwner()->GetRotation();
 
 	acceleration = force * inverseMass;
-	velocity += acceleration;
-	rotation += angularVelocity;
-	position += velocity;
+	velocity += acceleration * glm::vec3(_dt);
+	rotation += angularVelocity * glm::vec3(_dt);
+	position += velocity * glm::vec3(_dt);
 
-	// @@ Resolve Collision Resolution
+	// @@ Collision Resolution
 
 	Dampen();
 	UpdateNodeTransform();
@@ -43,6 +43,7 @@ void PhysicsBody::AddForce(glm::vec3 _force)
 void PhysicsBody::SetVelocity(glm::vec3 _velocity)
 {
 	velocity = _velocity;
+	//std::cout << " velocity : " << velocity.x  << std::endl;
 }
 
 void PhysicsBody::Dampen()

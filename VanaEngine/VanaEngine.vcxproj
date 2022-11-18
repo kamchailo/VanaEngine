@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animator2D.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderAABB.h" />
     <ClInclude Include="ColliderOOBB.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animator2D.cpp" />
     <ClCompile Include="ColliderAABB.cpp" />
     <ClCompile Include="ColliderOOBB.cpp" />
     <ClCompile Include="CollisionManager.cpp" />

@@ -32,7 +32,7 @@ void ComponentRenderer::Init()
 {
 }
 
-void ComponentRenderer::Update()
+void ComponentRenderer::Update(double _dt)
 {
 	Draw();
 }

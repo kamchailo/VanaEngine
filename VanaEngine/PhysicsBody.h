@@ -7,7 +7,7 @@ class PhysicsBody
 public:
 	PhysicsBody(int _mass, ComponentPhysics* _component, Collider* _collider);
 	~PhysicsBody();
-	void Integrate();
+	void Integrate(double _dt);
 	void AddForce(glm::vec3 _force);
 	void SetVelocity(glm::vec3 _velocity);
 	void Dampen();

@@ -7,7 +7,15 @@ in vec2 TexCoord;
 // texture samplers
 uniform sampler2D texture1;
 
+uniform vec2 spriteTotal;
+uniform vec2 spriteAt;
+
 void main()
 {
-	FragColor = texture(texture1, TexCoord) * vec4(ourColor, 1.0);
+	// uv.a / columns
+	// uv.b / rows
+	// vec2 uv = vec2(TexCoord.x * 0.25, TexCoord.y * 1);
+	// uv = vec2(uv.x + 0.25, uv.y);
+	vec2 uv = TexCoord;
+	FragColor = texture(texture1, uv) * vec4(ourColor, 1.0);
 }
