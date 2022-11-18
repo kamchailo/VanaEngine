@@ -9,8 +9,8 @@ class Collider;
 class Component;
 
 namespace Vana {
-	// separate Transform as its own class
-	// transform has world-accum and local
+	// Node as GameObject which can add multiple components
+	// and support scene graph
 	class Node
 	{
 	public:
@@ -28,8 +28,8 @@ namespace Vana {
 		// Game Update
 		virtual void DefaultInit();
 		virtual void Init(); // for user
-		virtual void DefaultUpdate();
-		virtual void Update(); // for user
+		virtual void DefaultUpdate(double _dt);
+		virtual void Update(double _dt); // for user
 
 		// Event
 		void HandleEvent(Event* _event);

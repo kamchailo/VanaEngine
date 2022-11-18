@@ -69,20 +69,20 @@ namespace Vana {
 		// To be overrided by user
 	}
 
-	void Node::DefaultUpdate()
+	void Node::DefaultUpdate(double _dt)
 	{
 		for (Component* c : components)
 		{
-			c->Update();
+			c->Update(_dt);
 		}
 		for (const auto& child : children)
 		{
-			child.second->DefaultUpdate();
-			child.second->Update(); // user update
+			child.second->DefaultUpdate(_dt);
+			child.second->Update(_dt); // user update
 		}
 	}
 
-	void Node::Update()
+	void Node::Update(double _dt)
 	{
 		// To be overrided by user
 	}

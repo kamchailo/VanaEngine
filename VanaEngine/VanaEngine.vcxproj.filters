@@ -40,6 +40,9 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{6c79ef8e-3188-44f3-b06c-28d2313af896}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{0a2c5ec0-df05-4c9b-a530-190a6bdfbb71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeGraphic.h">
@@ -162,6 +165,9 @@
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="Animator2D.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -265,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator2D.cpp">
+      <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

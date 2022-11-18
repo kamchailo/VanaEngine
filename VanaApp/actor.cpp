@@ -20,27 +20,27 @@ void Actor::Init()
 	//this->Scale(glm::vec3(1.0, 0.2, 1.0));
 }
 
-void Actor::Update()
+void Actor::Update(double _dt)
 {
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_UP))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		y = 0.1;
+		y = 200;
 	}
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_DOWN))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		y = -0.1;
+		y = -200;
 	}
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_LEFT))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		x = -0.1;
+		x = -200;
 	}
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_RIGHT))
 	{
 		//std::cout << "UP is pressed" << std::endl;
-		x = 0.1;
+		x = 200;
 	}
 	//std::cout << "BBB";
 	//SetPosition(glm::vec3(x, y, 0));

@@ -40,6 +40,8 @@ void Vana::Update()
 	double MS_PER_UPDATE = 1.0 / 60.0;
 
 	double previousTime = glfwGetTime();
+	double currentTime = previousTime;
+	double deltaTime = 0;
 	double lag = 0.0;
 
 	int count = 0;
@@ -72,13 +74,30 @@ void Vana::Update()
 	//// has to set to wait for dt
 	while (!GraphicSystem::GetInstance()->GraphicUpdate())
 	{
+		currentTime = glfwGetTime();
+		deltaTime = currentTime - previousTime;
+		previousTime = currentTime;
+
+		//lag += deltaTime;
+		//while (lag >= MS_PER_UPDATE)
+		//{
+		//	std::cout << "currentTime : " << currentTime 
+		//		<< " dt : " << deltaTime
+		//		<< " MS_PER_UPDATE : " << MS_PER_UPDATE
+		//		<< std::endl;
+		//	lag -= MS_PER_UPDATE;
+		//	// All Graphic Update Goes Here
+
+		//}
 		Input::GetInstance()->Update();
-		// All Graphic Update Goes Here
-		root->DefaultUpdate();
+		root->DefaultUpdate(deltaTime);
 		gameUI->Update();
 		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 		coreEventManager.DispatchEvent(root);
+
+		//std::cout << "lag < ms : " << lag << std::endl;
+		//Sleep(0.05);
 	}
 
 	Vana::Terminate();

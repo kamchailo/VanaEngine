@@ -7,7 +7,7 @@ public:
 	ComponentPhysics(CollisionManager& manager, glm::vec2 size);
 	~ComponentPhysics();
 	void Init();
-	void Update();
+	void Update(double _dt);
 	void Shutdown();
 	virtual void HandleEvent(Event* _event);
 	PhysicsBody* body;

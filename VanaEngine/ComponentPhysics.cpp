@@ -20,9 +20,9 @@ void ComponentPhysics::Init()
 {
 }
 
-void ComponentPhysics::Update()
+void ComponentPhysics::Update(double _dt)
 {
-	body->Integrate();
+	body->Integrate(_dt);
 }
 
 void ComponentPhysics::Shutdown()
