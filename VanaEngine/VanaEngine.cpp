@@ -15,6 +15,7 @@ int Vana::Init(int width, int height)
 	logSystem->Log(LOG_INFO, "Vana Engine Initializing");
 	//graphicSystem = GraphicSystem::GetInstance();
 	GraphicSystem::GetInstance()->Init(width, height);
+	gameUI = new GameUI(GraphicSystem::GetInstance()->GetWindow());
 	Input::GetInstance()->Init();
 	ShaderCollection::Init();
 	MeshCollection::Init();
@@ -74,6 +75,7 @@ void Vana::Update()
 		Input::GetInstance()->Update();
 		// All Graphic Update Goes Here
 		root->DefaultUpdate();
+		gameUI->Update();
 		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 		coreEventManager.DispatchEvent(root);
