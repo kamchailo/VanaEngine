@@ -22,7 +22,7 @@ int GraphicSystem::Init(int width, int height)
 	glfwInit();
 	// SET OpenGL Version to 3.X
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	// SET OpenGL Version to X.3
+	// SET OpenGL Version to X.3 // change to 3.0 support imgui
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	// SET OpenGL Profile to CORE_PROFILE -- more subset of OpenGL Features
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -32,7 +32,7 @@ int GraphicSystem::Init(int width, int height)
 	// ================================
 	//			Create Windows
 	// ================================
-	window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
+	window = glfwCreateWindow(width, height, "Vana Engine", NULL, NULL);
 	if (window == NULL)
 	{
 		logGraphic->Log(LOG_ERROR, "Fail to Create GLFW window");
@@ -47,6 +47,8 @@ int GraphicSystem::Init(int width, int height)
 	}
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	// Call window.MakeContextCurrent()
 	// ================================
 	
 	//std::cout << ">> 3. GLAD Init" << std::endl;
@@ -79,13 +81,15 @@ int GraphicSystem::GraphicUpdate()
 	{
 		return 1;
 	}
+	glEnable(GL_DEPTH_TEST);
+
 	// input
 	processInput(window);
 	// change viewMat
 	viewMatrix = glm::scale(glm::mat4(1), glm::vec3(2.0f / windowSize.x, 2.0f / windowSize.y, 1.0));
 	// Rendering Commands vvv
 	glClearColor(0.0f, 1.0f, 0.7f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
 	return 0;

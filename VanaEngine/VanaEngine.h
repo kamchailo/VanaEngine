@@ -15,9 +15,10 @@
 
 namespace Vana
 {
-	int Init(int width, int height);
+	int Init(int _width, int _height);
 	void Update();
 	inline GraphicSystem* graphicSystem;
+	inline GameUI* gameUI;
 	inline Node* root;
 	inline Logger* logSystem;
 	inline CollisionManager collisionManager;

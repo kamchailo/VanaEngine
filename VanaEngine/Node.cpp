@@ -45,6 +45,10 @@ namespace Vana {
 		{
 			delete components[i];
 		}
+		for (auto& child : children)
+		{
+			delete &child;
+		}
 	}
 
 	void Node::DefaultInit()
