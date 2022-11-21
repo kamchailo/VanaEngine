@@ -43,6 +43,9 @@
     <Filter Include="Animation">
       <UniqueIdentifier>{0a2c5ec0-df05-4c9b-a530-190a6bdfbb71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{5d46b4dd-c25f-4b84-98bf-40dc179d2489}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NodeGraphic.h">
@@ -168,6 +171,15 @@
     <ClInclude Include="Animator2D.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentAnimator2D.h">
+      <Filter>NodeComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2D.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -273,6 +285,15 @@
       <Filter>Imgui</Filter>
     </ClCompile>
     <ClCompile Include="Animator2D.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentAnimator2D.cpp">
+      <Filter>NodeComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation2D.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
   </ItemGroup>

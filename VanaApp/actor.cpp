@@ -55,7 +55,7 @@ void Actor::Update(double _dt)
 
 	if (Input::GetInstance()->IsPressed(INPUT_KEY_INTERACT))
 	{
-		i -= 0.1;
+		i -= 50 * _dt;
 	}
 	SetRotation(glm::vec3(0.0, 0.0, i));
 
