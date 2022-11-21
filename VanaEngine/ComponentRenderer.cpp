@@ -17,6 +17,8 @@ ComponentRenderer::ComponentRenderer(Mesh* mesh, Shader* shader, Texture* textur
 	this->shader = shader;
 	this->texture = texture;
 	this->spriteSize = size;
+	this->tilling = glm::vec2(1);
+	this->tillingOffset = glm::vec2(0);
 }
 
 ComponentRenderer::ComponentRenderer(Texture* texture, glm::vec2 size)
@@ -26,6 +28,8 @@ ComponentRenderer::ComponentRenderer(Texture* texture, glm::vec2 size)
 	this->shader = ShaderCollection::sprite2D;
 	this->texture = texture;
 	this->spriteSize = size;
+	this->tilling = glm::vec2(1);
+	this->tillingOffset = glm::vec2(0);
 }
 
 void ComponentRenderer::Init()
@@ -57,6 +61,9 @@ void ComponentRenderer::Draw()
 		* glm::scale(owner->transform.GetTransform(), glm::vec3(spriteSize / 2.0f, 1.0))
 	);
 
+	shader->setVec2("uniform_tilling", tilling);
+	shader->setVec2("uniform_tillingOffset", tillingOffset);
+
 	if (type == SHAPE_VERT)
 	{
 		glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -67,8 +74,17 @@ void ComponentRenderer::Draw()
 	}
 	else if (type == SHAPE_SPRITE)
 	{
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture->ID);
+		texture->Bind(0);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
+}
+
+void ComponentRenderer::SetTilling(glm::vec2 _tilling)
+{
+	this->tilling = _tilling;
+}
+
+void ComponentRenderer::SetTillingOffset(glm::vec2 _tillingOffset)
+{
+	this->tillingOffset = _tillingOffset;
 }

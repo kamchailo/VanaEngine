@@ -80,6 +80,12 @@ void Shader::setFloat(const std::string& name, float value) const
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
+void Shader::setVec2(const std::string& name, glm::vec2 value) const
+{
+    glUseProgram(ID);
+    glUniform2f(glGetUniformLocation(ID, name.c_str()), value.r, value.g);
+}
+
 void Shader::setMat4(const std::string& name, glm::mat4 value) const
 {
     glUseProgram(ID);

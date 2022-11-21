@@ -45,11 +45,16 @@
 #include "CollisionManager.h"
 #include "PhysicsBody.h"
 
+// Art
+#include "Animation2D.h"
+#include "Animator2D.h"
+
 // Components
 #include "Component.h"
 #include "ComponentTransform.h"
 #include "ComponentRenderer.h"
 #include "ComponentPhysics.h"
+#include "ComponentAnimator2D.h"
 
 #include "VanaEngine.h"
 

@@ -167,12 +167,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation2D.h" />
     <ClInclude Include="Animator2D.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="ColliderAABB.h" />
     <ClInclude Include="ColliderOOBB.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentAnimator2D.h" />
     <ClInclude Include="ComponentPhysics.h" />
     <ClInclude Include="ComponentRenderer.h" />
     <ClInclude Include="ComponentTransform.h" />
@@ -199,6 +201,7 @@
     <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhysicsBody.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="Texture.h" />
@@ -210,11 +213,13 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation2D.cpp" />
     <ClCompile Include="Animator2D.cpp" />
     <ClCompile Include="ColliderAABB.cpp" />
     <ClCompile Include="ColliderOOBB.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentAnimator2D.cpp" />
     <ClCompile Include="ComponentPhysics.cpp" />
     <ClCompile Include="ComponentRenderer.cpp" />
     <ClCompile Include="ComponentTransform.cpp" />
@@ -276,6 +281,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PhysicsBody.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderCollection.cpp" />
     <ClCompile Include="stb_image.cpp" />
