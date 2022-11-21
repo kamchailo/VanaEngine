@@ -77,6 +77,19 @@ glm::vec2 Animation2D::GetSpriteTilling()
 	return glm::vec2(1.0 / static_cast<float>(column), 1.0 / static_cast<float>(row));
 }
 
+// 3 * 5 spritesheet
+// 0  1  2  3  4
+// 5  6  7  8  9
+//10 11 12 13 14
+// 13
+// row = 13 / 5 = 2
+// column = 13 % 5 = 3
+// 
+// OpenGl Column Major
+// OpenGL flip y
+// ^
+// | y
+// + ---> x
 glm::vec2 Animation2D::GetSpriteOffset()
 {
 	int rowAt = frameAt / column + 1;
