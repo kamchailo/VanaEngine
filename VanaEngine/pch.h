@@ -37,6 +37,8 @@
 #include "Texture.h"
 #include "Node.h"
 #include "NodeFactory.h"
+#include "Scene.h"
+#include "SceneSystem.h"
 
 // Physics
 #include "Collider.h"

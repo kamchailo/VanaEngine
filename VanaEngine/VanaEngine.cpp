@@ -19,23 +19,17 @@ int Vana::Init(int width, int height)
 	Input::GetInstance()->Init();
 	ShaderCollection::Init();
 	MeshCollection::Init();
-	root = new Vana::Node();
+
+	// @@ change to empty scene
+	//root = new Vana::Node();
+	SceneSystem::GetInstance()->Init();
 	return 0;
 }
 
 void Vana::Update()
 {
-	root->DefaultInit();
-
-
-	// while engine working
-
-	// root->DefaultUpdate();
-	// collisionManager.Update();
-
-	// input
-	
-	// graphic update
+	//SceneSystem::GetInstance()->GetCurrentScene()->Init();
+	//root->DefaultInit();
 
 	double MS_PER_UPDATE = 1.0 / 60.0;
 
@@ -46,60 +40,27 @@ void Vana::Update()
 
 	int count = 0;
 	
-	//while (true)
-	//{
-	//	double currentTime = glfwGetTime();
-	//	double elapsedTime = currentTime - previousTime;
-	//	previousTime = currentTime;
-	//	lag += elapsedTime;
-
-	//	Input::GetInstance()->Update();
-	//	count = 0;
-	//	while (lag >= MS_PER_UPDATE)
-	//	{
-	//		//std::cout << "INSIDE SUPER UPDATE" << std::endl;
-	//		collisionManager.Update();
-	//		root->DefaultUpdate();
-	//		++count;
-	//		if(count >0)
-	//			std::cout << count << " ||| " << lag << std::endl;
-	//		lag -= MS_PER_UPDATE;
-	//	}
-
-	//	GraphicSystem::GetInstance()->GraphicUpdate();
-	//	GraphicSystem::GetInstance()->GraphiceSwapBuffer();
-	//}
-
-
-	//// has to set to wait for dt
+	// Main GameLoop
 	while (!GraphicSystem::GetInstance()->GraphicUpdate())
 	{
 		currentTime = glfwGetTime();
 		deltaTime = currentTime - previousTime;
 		previousTime = currentTime;
-
-		//lag += deltaTime;
-		//while (lag >= MS_PER_UPDATE)
-		//{
-		//	std::cout << "currentTime : " << currentTime 
-		//		<< " dt : " << deltaTime
-		//		<< " MS_PER_UPDATE : " << MS_PER_UPDATE
-		//		<< std::endl;
-		//	lag -= MS_PER_UPDATE;
-		//	// All Graphic Update Goes Here
-
-		//}
+		// @@ Add fixed update
 		Input::GetInstance()->Update();
-		root->DefaultUpdate(deltaTime);
+		
+		// switch to scene system instead
+
+		SceneSystem::GetInstance()->Update(deltaTime);
+		//SceneSystem::GetInstance()->GetCurrentScene()->Update(deltaTime);
+		//root->DefaultUpdate(deltaTime);
+
 		gameUI->Update();
 		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
-		coreEventManager.DispatchEvent(root);
+		coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());
 
-		//std::cout << "lag < ms : " << lag << std::endl;
-		//Sleep(0.05);
 	}
-
 	Vana::Terminate();
 }
 

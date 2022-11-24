@@ -14,6 +14,7 @@ public:
 	void Stop();
 	//void AddFrame(double _time, int _frame);
 	//void SetMaxDuration(double _time);
+	Animator2D* GetAnimator2D() const;
 	void SetPlayingAnimation(Animation2D* _animation);
 private:
 	Animator2D* animator;

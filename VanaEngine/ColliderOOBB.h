@@ -7,7 +7,8 @@ class ColliderOOBB : public Collider
 public:
 	// Constructor
 	// @@ need to change param to vertices to support polygon
-	ColliderOOBB(unsigned int id, glm::vec3 min, glm::vec3 max) : Collider(id, COLLIDER_OOBB)
+	ColliderOOBB(unsigned int id, ComponentPhysics* _ownerComp, glm::vec3 min, glm::vec3 max)
+		: Collider(id, COLLIDER_AABB, _ownerComp)
 	{
 		transform = glm::mat4(1);
 		vertices.push_back(glm::vec3(min.x, max.y, 0.0)); // Top Left

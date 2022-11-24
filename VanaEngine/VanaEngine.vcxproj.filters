@@ -48,9 +48,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NodeGraphic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VanaDefine.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -180,6 +177,9 @@
     <ClInclude Include="Animation2D.h">
       <Filter>Animation</Filter>
     </ClInclude>
+    <ClInclude Include="SceneSystem.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
@@ -254,9 +254,6 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>Events</Filter>
     </ClCompile>
-    <ClCompile Include="NodeFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -295,6 +292,12 @@
     </ClCompile>
     <ClCompile Include="Animation2D.cpp">
       <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneSystem.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFactory.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

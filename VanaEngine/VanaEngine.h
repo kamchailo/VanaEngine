@@ -17,11 +17,13 @@ namespace Vana
 {
 	int Init(int _width, int _height);
 	void Update();
-	inline GraphicSystem* graphicSystem;
+	void Terminate();
+	//inline GraphicSystem* graphicSystem;
 	inline GameUI* gameUI;
-	inline Node* root;
 	inline Logger* logSystem;
 	inline CollisionManager collisionManager;
 	inline EventManager coreEventManager;
-	void Terminate();
+	//inline SceneSystem* sceneSystem;
+	// @@ need to remove root 
+	inline Node* root;
 }

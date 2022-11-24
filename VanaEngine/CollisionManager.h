@@ -23,7 +23,7 @@ class CollisionManager
 public:
 	CollisionManager() {};
 	~CollisionManager();
-	Collider* SpawnCollider(ColliderType type, float width, float height);
+	Collider* SpawnCollider(ColliderType type, ComponentPhysics* ownerComp, float width, float height);
 	void Update();
 	void DeleteCollider(Collider* collider);
 	void BoardcastCollisionMessage();
