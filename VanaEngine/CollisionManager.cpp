@@ -15,19 +15,28 @@ CollisionManager::~CollisionManager()
 	*/
 }
 
-Collider* CollisionManager::SpawnCollider(ColliderType type, float width, float height)
+Collider* CollisionManager::SpawnCollider(ColliderType type, ComponentPhysics* ownerComp, float width, float height)
 {
 	Collider* collider = NULL;
 	int id = ++MAX_COLLIDER_ID;
 	switch (type)
 	{
 	case COLLIDER_AABB:
-		collider = new ColliderAABB(id, glm::vec3(-width/2.0, -height/2.0, 0.0), glm::vec3(width/2.0, height/2.0, 0.0));
+		collider = new ColliderAABB(id
+			, ownerComp
+			, glm::vec3(-width/2.0, -height/2.0, 0.0)
+			, glm::vec3(width/2.0, height/2.0, 0.0));
 		//collider = new ColliderAABB(id, glm::vec3(-width, -height , 0.0), glm::vec3(width, height, 0.0));
-		collider->narrowCollider = new ColliderOOBB(id, glm::vec3(-width / 2.0, -height / 2.0, 0.0), glm::vec3(width / 2.0, height / 2.0, 0.0));
+		collider->narrowCollider = new ColliderOOBB(id
+			, ownerComp
+			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
+			, glm::vec3(width / 2.0, height / 2.0, 0.0));
 		break;
 	case COLLIDER_OOBB:
-		collider = new ColliderOOBB(id, glm::vec3(-width / 2.0, -height / 2.0, 0.0), glm::vec3(width / 2.0, height / 2.0, 0.0));
+		collider = new ColliderOOBB(id
+			, ownerComp
+			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
+			, glm::vec3(width / 2.0, height / 2.0, 0.0));
 		break;
 	case COLLIDER_CIRCLE:
 		break;
@@ -79,8 +88,12 @@ void CollisionManager::BoardScan()
 	// do board scan
 	for (auto& colliderI : colliders)
 	{
+		// Check if collider component owner isAlive
+		if (!colliderI.second->GetOwnerComponent()->GetOwner()->IsAlive()) { break; }
 		for (auto& colliderJ : colliders)
 		{
+			// Check if collider component owner isAlive
+			if (!colliderJ.second->GetOwnerComponent()->GetOwner()->IsAlive()) { break; }
 			if (colliderI != colliderJ)
 			{
 				// if (colliderI.collide(colliderJ))

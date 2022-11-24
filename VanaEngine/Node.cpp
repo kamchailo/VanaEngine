@@ -17,7 +17,7 @@ namespace Vana {
 	{
 		this->name = "noname";
 		this->nodeID = ++Node::nodeIDMax;
-		this->parent = parentNode;
+		//this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
 		this->parentTransform = parentNode->parentTransform;
@@ -30,7 +30,7 @@ namespace Vana {
 	{
 		this->name = name;
 		this->nodeID = ++Node::nodeIDMax;
-		this->parent = parentNode;
+		//this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
 		this->parentTransform = parentNode->parentTransform;
@@ -45,14 +45,15 @@ namespace Vana {
 		{
 			delete components[i];
 		}
-		for (auto& child : children)
+		for (auto child : children)
 		{
-			delete &child;
+			delete child.second;
 		}
 	}
 
 	void Node::DefaultInit()
 	{
+		isAwake = true;
 		for (Component* c : components)
 		{
 			c->Init();
@@ -71,6 +72,10 @@ namespace Vana {
 
 	void Node::DefaultUpdate(double _dt)
 	{
+		if (!IsAlive())
+		{
+			delete this;
+		}
 		for (Component* c : components)
 		{
 			c->Update(_dt);
@@ -89,6 +94,10 @@ namespace Vana {
 
 	void Node::HandleEvent(Event* _event)
 	{
+		if (!IsAlive())
+		{
+			return;
+		}
 		//std::cout << "inside handle event" << std::endl;
 		for (Component* c : components)
 		{
@@ -104,6 +113,8 @@ namespace Vana {
 	{
 		return children;
 	}
+
+
 	Node const* Node::GetChild(unsigned int childNodeID)
 	{
 		return children[childNodeID];
@@ -117,6 +128,7 @@ namespace Vana {
 	void Node::AddChild(Node* newChild)
 	{
 		children[newChild->nodeID] = newChild;
+		newChild->parent = this;
 		newChild->parentTransform = Transform();
 	}
 
@@ -148,5 +160,22 @@ namespace Vana {
 	{
 		component->SetOwner(this);
 		components.push_back(component);
+	}
+
+	bool Node::IsAwake()
+	{
+		return isAwake;
+	}
+	bool Node::IsAlive()
+	{
+		return isAlive;
+	}
+	void Node::Destroy()
+	{
+		isAlive = false;
+		for (const auto& child : children)
+		{
+			child.second->Destroy();
+		}
 	}
 }

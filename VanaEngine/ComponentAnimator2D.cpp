@@ -62,6 +62,11 @@ void ComponentAnimator2D::Stop()
 //	animator->GetCurrentAnimation()->SetMaxDuration(_time);
 //}
 
+Animator2D* ComponentAnimator2D::GetAnimator2D() const
+{
+	return animator;
+}
+
 void ComponentAnimator2D::SetPlayingAnimation(Animation2D* _animation)
 {
 	animator->SetAnimation(_animation);

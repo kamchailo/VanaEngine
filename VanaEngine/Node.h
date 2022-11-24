@@ -62,8 +62,10 @@ namespace Vana {
 			return nullptr;
 		}
 
-		// Physics
-		//Collider* collider;
+		// Scene System
+		bool IsAwake();
+		bool IsAlive();
+		void Destroy();
 	private:
 		// Editor
 		std::string name;
@@ -80,6 +82,10 @@ namespace Vana {
 
 		// Components
 		std::vector<Component*> components;
+
+		// Scene System
+		bool isAwake = false;
+		bool isAlive = true;
 	};
 }
 

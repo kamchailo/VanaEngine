@@ -9,6 +9,8 @@ public:
 	NodeFactory();
 	~NodeFactory();
 	Vana::Node& CreateScene(std::string _filename);
+	// Add Method for user defined class
+	// delegate func from user defined and pass it to factory to bind to scene graph
 private:
 	void AttachTree(Vana::Node& root, nlohmann::json const& children);
 	std::map<std::string, Vana::Node*> nodes;

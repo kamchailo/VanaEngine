@@ -8,7 +8,8 @@ class ColliderAABB : public Collider
 {
 public:
 	// Constructor
-	ColliderAABB(unsigned int id, glm::vec3 min, glm::vec3 max) : Collider(id, COLLIDER_AABB)
+	ColliderAABB(unsigned int id, ComponentPhysics* _ownerComp, glm::vec3 min, glm::vec3 max) 
+		: Collider(id, COLLIDER_AABB, _ownerComp)
 		, minPoint(min), maxPoint(max)
 	{
 		transform = glm::mat4(1);

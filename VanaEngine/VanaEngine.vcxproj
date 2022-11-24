@@ -198,10 +198,10 @@
     <ClInclude Include="MeshCollection.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeFactory.h" />
-    <ClInclude Include="NodeGraphic.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneSystem.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderCollection.h" />
     <ClInclude Include="Texture.h" />
@@ -282,6 +282,7 @@
     </ClCompile>
     <ClCompile Include="PhysicsBody.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneSystem.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderCollection.cpp" />
     <ClCompile Include="stb_image.cpp" />

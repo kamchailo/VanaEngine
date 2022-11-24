@@ -4,7 +4,7 @@
 ComponentPhysics::ComponentPhysics(CollisionManager& _manager, glm::vec2 size)
 {
 	this->manager = &_manager;
-	Collider* collider = this->manager->SpawnCollider(COLLIDER_AABB, size.x, size.y);
+	Collider* collider = this->manager->SpawnCollider(COLLIDER_AABB, this, size.x, size.y);
 	body = new PhysicsBody(1, this, collider);
 	//this->collider = manager.SpawnCollider(COLLIDER_AABB, size.x, size.y);
 	//std::cout << "Collider ID: " << collider->colliderID << std::endl;
@@ -36,6 +36,7 @@ void ComponentPhysics::HandleEvent(Event* _event)
 	{
 		//EventCollisionMessage* msg = dynamic_cast<EventCollisionMessage*>(e->GetUserData());
 		EventCollisionMessage* msg = reinterpret_cast<EventCollisionMessage*>(e->GetUserData());
+		/*
 		std::cout << "There is EventCollision between cID "
 			<< msg->origin->colliderID
 			<< " with ";
@@ -43,6 +44,8 @@ void ComponentPhysics::HandleEvent(Event* _event)
 		{
 			std::cout << " cID[" << msg->origin->GetCollideds()[i]->colliderID <<"] , ";
 		}
+		std::cout << " Total Collideds : " << msg->origin->GetCollideds().size();
 		std::cout << std::endl;
+		*/
 	}
 }
