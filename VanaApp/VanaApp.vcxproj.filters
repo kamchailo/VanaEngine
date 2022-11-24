@@ -12,6 +12,9 @@
     <Filter Include="2- Enemies">
       <UniqueIdentifier>{3cd65368-c1ab-4898-a672-c962c5f8dc50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3-Utilities">
+      <UniqueIdentifier>{86ce50f1-5cc2-400b-8180-a9f8ed09152f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +32,9 @@
     <ClCompile Include="StageManager.cpp">
       <Filter>2- Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ActorDebug.cpp">
+      <Filter>3-Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actor.h">
@@ -42,6 +48,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>2- Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorDebug.h">
+      <Filter>3-Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 #pragma once
 #include <VanaEngine.h>
 
+class ActorDebug;
+
 class Actor : public Vana::Node
 {
 public:
@@ -25,4 +27,5 @@ private:
 	// Animation
 	Texture* idleTex;
 	Animation2D* idle;
+	ActorDebug* actorDebug;
 };

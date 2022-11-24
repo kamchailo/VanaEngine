@@ -182,6 +182,7 @@
     <ClInclude Include="EventCollision.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameUIWindow.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />

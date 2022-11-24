@@ -31,6 +31,7 @@
 // Core
 #include "Graphics.h"
 #include "GameUI.h"
+#include "GameUIWindow.h"
 #include "Transform.h"
 #include "Mesh.h"
 #include "Shader.h"

@@ -1,6 +1,7 @@
 #include "actor.h"
 #include <MeshCollection.h>
 #include <Input.h>
+#include "ActorDebug.h"
 
 #include "global.h"
 
@@ -18,6 +19,8 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 	this->AddComponent(cr);
 	this->AddComponent(cp);
 	bod = GetComponent<ComponentPhysics>()->body;
+	actorDebug = new ActorDebug("ActorDebug", 200, 100);
+	Vana::gameUI->AddUiWindow(actorDebug);
 }
 
 void Actor::Init()
@@ -162,6 +165,15 @@ void Actor::Update(double _dt)
 	{
 
 	}
+	//Imgui Debug
+	actorDebug->SetText1(std::to_string(isDashing));
+	actorDebug->SetText2(std::to_string(coolDown));
+	actorDebug->SetText3(std::to_string(x) + " " + std::to_string(y));
+	actorDebug->SetText4("direction : " 
+		+ std::to_string(direction.x) 
+		+ " " 
+		+ std::to_string(direction.y));
+
 
 	// Trigger when collide with something
 	if (SceneSystem::GetInstance()->GetCurrentScene() == mainScene
