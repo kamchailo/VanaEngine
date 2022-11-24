@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="actor.cpp" />
+    <ClCompile Include="ActorDebug.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actor.h" />
+    <ClInclude Include="ActorDebug.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="StageManager.h" />

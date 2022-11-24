@@ -180,6 +180,9 @@
     <ClInclude Include="SceneSystem.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="GameUIWindow.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VanaEngine.cpp">
