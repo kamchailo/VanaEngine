@@ -10,8 +10,8 @@ ActorDebug::~ActorDebug()
 
 void ActorDebug::Draw()
 {
+	ImGui::Text("%.3f ms/f (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 	ImGui::Text(text1.c_str());
-	//std::cout << text1 << "  " << text2 << "|";
 	ImGui::Text(text2.c_str());
 	ImGui::Text(text3.c_str());
 	ImGui::Text(text4.c_str());

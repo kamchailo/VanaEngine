@@ -78,3 +78,32 @@ void DiamondHead::CollideWithPlayer()
 	//std::cout << "Diamond Head get hit " << std::endl;
 	 //Destroy();
 }
+
+DiamondArrow::DiamondArrow(glm::vec3 _position)
+	: Enemy(texDiamondArrow
+		, _position
+		, diamondArrowSpriteSize
+		, diamondArrowIdle)
+{
+}
+
+void DiamondArrow::Update(double _dt)
+{
+	// seek player
+	float speed = 200;
+	glm::vec3 direction = player->GetPosition() - this->GetPosition();
+	direction = glm::normalize(direction);
+	PhysicsBody* body = GetComponent<ComponentPhysics>()->body;
+
+	glm::vec3 velocity = glm::vec3(direction.x * speed, direction.y * speed, 0.0);
+	body->SetVelocity(velocity);
+
+	float rotation = atan2(direction.y, direction.x);
+	rotation = rotation * 57.2958;
+	SetRotation(glm::vec3(0,0,rotation));
+}
+
+void DiamondArrow::CollideWithPlayer()
+{
+
+}
