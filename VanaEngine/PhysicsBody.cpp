@@ -46,6 +46,11 @@ void PhysicsBody::SetVelocity(glm::vec3 _velocity)
 	//std::cout << " velocity : " << velocity.x  << std::endl;
 }
 
+glm::vec3 PhysicsBody::GetVelocity() const
+{
+	return velocity;
+}
+
 void PhysicsBody::Dampen()
 {
 	double length = glm::length(velocity);

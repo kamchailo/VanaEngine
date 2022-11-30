@@ -10,6 +10,7 @@ public:
 	void Integrate(double _dt);
 	void AddForce(glm::vec3 _force);
 	void SetVelocity(glm::vec3 _velocity);
+	glm::vec3 GetVelocity() const;
 	void Dampen();
 	void UpdateNodeTransform();
 	Collider* GetCollider() const;

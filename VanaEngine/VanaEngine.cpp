@@ -58,7 +58,8 @@ void Vana::Update()
 		gameUI->Update();
 		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
-		coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());
+		// reduce event
+		//coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());
 
 	}
 	Vana::Terminate();

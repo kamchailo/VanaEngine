@@ -15,6 +15,7 @@ void ShaderCollection::Init()
 
 	// Sprite
 	ShaderCollection::sprite2D = new Shader(SHADER_SPRITE_VERT, SHADER_SPRITE_FRAG);
+	ShaderCollection::sprite2D->setInt("texture1", 0);
 	ShaderCollection::sprite2D->use();
 	//ShaderCollection::default2D->setVec4("fillColor", glm::vec4(0.5f, 0.5f, 1.0f, 1.0f));
 }

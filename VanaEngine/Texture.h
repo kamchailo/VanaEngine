@@ -4,8 +4,8 @@
 class Texture
 {
 public:
-	Texture(char* texturePath);
-	Texture(const char* texturePath);
+	Texture(char* texturePath, bool alpha);
+	Texture(const char* texturePath, bool alpha);
 	~Texture();
 	void Bind(int unit);
 	unsigned int ID;

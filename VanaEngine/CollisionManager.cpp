@@ -27,10 +27,13 @@ Collider* CollisionManager::SpawnCollider(ColliderType type, ComponentPhysics* o
 			, glm::vec3(-width/2.0, -height/2.0, 0.0)
 			, glm::vec3(width/2.0, height/2.0, 0.0));
 		//collider = new ColliderAABB(id, glm::vec3(-width, -height , 0.0), glm::vec3(width, height, 0.0));
+		/*
+		* @@ turn off OOBB
 		collider->narrowCollider = new ColliderOOBB(id
 			, ownerComp
 			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
 			, glm::vec3(width / 2.0, height / 2.0, 0.0));
+		*/
 		break;
 	case COLLIDER_OOBB:
 		collider = new ColliderOOBB(id
@@ -61,7 +64,7 @@ void CollisionManager::Update()
 	}
 	BoardScan();
 	NarrowScan();
-	BoardcastCollisionMessage();
+	//BoardcastCollisionMessage();
 }
 
 void CollisionManager::DeleteCollider(Collider* collider)
@@ -85,11 +88,33 @@ void CollisionManager::BoardcastCollisionMessage()
 
 void CollisionManager::BoardScan()
 {
+	std::map<unsigned int, Collider*>::iterator itI, itJ;
+	itI = colliders.begin();
+	while (itI != colliders.end())
+	{
+		itJ = itI;
+		while (itJ != colliders.end())
+		{
+			if (itI != itJ) 
+			{
+				if (itI->second->Collide(itJ->second))
+				{
+					narrowColliders.push_back(NarrowMessage(itI->second, itJ->second));
+				}
+				
+			}
+			++itJ;
+		}
+		++itI;
+	}
+	/*
 	// do board scan
 	for (auto& colliderI : colliders)
 	{
+
 		// Check if collider component owner isAlive
 		if (!colliderI.second->GetOwnerComponent()->GetOwner()->IsAlive()) { break; }
+		// @@ only check one which is not checked yet
 		for (auto& colliderJ : colliders)
 		{
 			// Check if collider component owner isAlive
@@ -105,6 +130,7 @@ void CollisionManager::BoardScan()
 			}
 		}
 	}
+	*/
 }
 
 void CollisionManager::NarrowScan()
@@ -142,6 +168,7 @@ void CollisionManager::NarrowScan()
 			//std::cout << "NARROW FOUND COLLISION" << std::endl;
 			// @@ optimized by add both
 			narrowColliders[i].a->AddCollided(colliderB);
+			narrowColliders[i].b->AddCollided(colliderA);
 		}
 	}
 }
