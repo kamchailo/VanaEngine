@@ -32,5 +32,10 @@ private:
 
 class DiamondArrow : public Enemy
 {
-
+public:
+	DiamondArrow(glm::vec3 _position);
+	virtual void Update(double _dt);
+	virtual void CollideWithPlayer();
+private:
+	double angle = 0.0;
 };

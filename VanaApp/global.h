@@ -5,8 +5,19 @@
 inline NodeFactory nf;
 inline Scene* mainScene;
 inline Scene* endScene;
+
+// Textures
 inline Texture* texPlayer;
 inline Texture* texDiamondHead;
-inline Animation2D* diamondHeadIdle;
+inline Texture* texDiamondArrow;
 
-inline glm::vec3 diamondHeadSpriteSize = glm::vec3(100,100,0);
+// Animations
+inline Animation2D* diamondHeadIdle;
+inline Animation2D* diamondArrowIdle;
+
+// SpriteSize
+inline glm::vec3 diamondHeadSpriteSize = glm::vec3(50, 50,0);
+inline glm::vec3 diamondArrowSpriteSize = glm::vec3(20, 20, 0);
+
+// NodeInstance
+inline Actor* player;

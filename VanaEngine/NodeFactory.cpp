@@ -158,7 +158,7 @@ void NodeFactory::AttachTree(Vana::Node& root, nlohmann::json const& children)
                 //vana_default_texture.png
                 textureLoc = "default/vana_default_texture.png";
             }
-            texture = new Texture(textureLoc.c_str());
+            texture = new Texture(textureLoc.c_str(), FALSE);
 
             // Build Renderer and PhysicsBody
             ComponentTransform* compTransform = new ComponentTransform();
@@ -268,7 +268,7 @@ void NodeFactory::AttachTree(Vana::Node& root, nlohmann::json const& children)
             //vana_default_texture.png
             textureLoc = "default/vana_default_texture.png";
         }
-        texture = new Texture(textureLoc.c_str());
+        texture = new Texture(textureLoc.c_str(), FALSE);
 
         // Build Renderer and PhysicsBody
         ComponentTransform* compTransform = new ComponentTransform();

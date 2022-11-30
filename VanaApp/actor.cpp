@@ -2,6 +2,7 @@
 #include <MeshCollection.h>
 #include <Input.h>
 #include "ActorDebug.h"
+#include "Enemy.h"
 
 #include "global.h"
 
@@ -21,10 +22,6 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 	bod = GetComponent<ComponentPhysics>()->body;
 	actorDebug = new ActorDebug("ActorDebug", 200, 100);
 	Vana::gameUI->AddUiWindow(actorDebug);
-}
-
-void Actor::Init()
-{
 	ComponentAnimator2D* compAnim2D = new ComponentAnimator2D();
 	this->AddComponent(compAnim2D);
 	idle = new Animation2D(idleTex, 4, 4, true, true);
@@ -46,6 +43,10 @@ void Actor::Init()
 	idle->AddKeyFrame(14, 14);
 	idle->AddKeyFrame(15, 15);
 	idle->SetMaxDuration(16.0);
+}
+
+void Actor::Init()
+{
 	this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(idle);
 	this->GetComponent<ComponentAnimator2D>()->Play();
 
@@ -55,6 +56,13 @@ void Actor::Init()
 
 void Actor::Update(double _dt)
 {
+	// Catch if state == DEAD
+	if (state == Actor::DEAD)
+	{
+		std::cout << "I'm DEAD" << std::endl;
+		return;
+	}
+
 	glm::vec3 pos = this->GetPosition();
 	//std::cout << "position : " << pos.x << ", " << pos.y << std::endl;
 
@@ -114,43 +122,49 @@ void Actor::Update(double _dt)
 		coolDown = maxCoolDown;
 	}
 
-	//std::cout << "speed : " << speed << std::endl;
-
-
-	//std::cout << "BBB";
-	//SetPosition(glm::vec3(x, y, 0));
-
-
-	// Recalc Speed
-	// if move
-	// speed += step
-
-
-
-
-
 	// Create direction
-	glm::vec3 dir = glm::vec3(x, y, 0);
-	if (glm::length(dir) > 0)
-	{
-		dir = glm::normalize(dir);
-	}
-	dir *= speedStep * 1000 * _dt;
-	direction += dir;
-	direction = glm::clamp(direction, glm::vec3(-maxSpeed), glm::vec3(maxSpeed));
+	//glm::vec3 dir = glm::vec3(x, y, 0);
+	//if (glm::length(dir) > 0)
+	//{
+	//	dir = glm::normalize(dir);
+	//}
+	//dir *= speedStep * 1000 * _dt;
+	//direction += dir;
+	//direction = glm::clamp(direction, glm::vec3(-maxSpeed), glm::vec3(maxSpeed));
 	//std::cout << "x,y : " << direction.x <<", "<< direction.y << std::endl;
 	//std::cout << "x,y : " << direction.x << ", " << direction.y 
 	//	<< " || glm::length(direction) : " << glm::length(direction) << std::endl;
 
 
+	// Create normalized direction
+	direction = glm::vec3(x, y, 0);
+	if (glm::length(direction) > 0)
+	{
+		direction = glm::normalize(direction);
+	}
+
+
 	// Update Velocity
 	// Make Body Move
-	bod->SetVelocity(direction * dashSpeed);
+	if (x != 0 || y != 0)
+	{
+		speed = min(maxSpeed, speed + speedStep * _dt);
+		bod->SetVelocity(direction * speed * dashSpeed);
+	}
+	else
+	{
+		speed = 0;
+		glm::vec3 curV = bod->GetVelocity();
+		glm::vec3 dampen = glm::vec3(
+			max(0.0, curV.x - speedStep * _dt)
+			, max(0.0, curV.y - speedStep * _dt)
+			, 0.0
+		);
+		bod->SetVelocity(dampen);
+	}
 
 	// dampen
-	direction.x -= direction.x * speedStep * 0.3 * _dt;
-	direction.y -= direction.y * speedStep * 0.3 * _dt;
-	//speed = max(0, speed - speedStep * maxSpeed * 2 * _dt);
+	//speed = max(1.0, speed - maxSpeed * 20 * _dt);
 	coolDown = max(0.0, coolDown - _dt);
 
 	if (isDashing)
@@ -169,18 +183,58 @@ void Actor::Update(double _dt)
 	actorDebug->SetText1(std::to_string(isDashing));
 	actorDebug->SetText2(std::to_string(coolDown));
 	actorDebug->SetText3(std::to_string(x) + " " + std::to_string(y));
-	actorDebug->SetText4("direction : " 
-		+ std::to_string(direction.x) 
-		+ " " 
-		+ std::to_string(direction.y));
+	actorDebug->SetText4(
+		+ " speed "
+		+ std::to_string(speed)
+		+ " move "
+		+ std::to_string(direction.x * speed * dashSpeed));
 
 
 	// Trigger when collide with something
+
+	std::vector<Collider*> collideds = this->GetComponent<ComponentPhysics>()->body
+		->GetCollider()->GetCollideds();
 	if (SceneSystem::GetInstance()->GetCurrentScene() == mainScene
 		&&
-		this->GetComponent<ComponentPhysics>()->body
-		->GetCollider()->GetCollideds().size() > 0)
+		collideds.size() > 0)
 	{
+		for (auto& c : collideds)
+		{
+			// collided with 
+			// DiamondHead
+			Node* n = dynamic_cast<DiamondHead*>(c->GetOwnerComponent()->GetOwner());
+			if (n)
+			{
+				if (isDashing)
+				{
+					std::cout << " Hit Diamond Head" << std::endl;
+					n->Destroy();
+				}
+				else
+				{
+					state = Actor::DEAD;
+				}
+				continue;
+			}
+			// collided with 
+			// DiamondArrow
+			n = dynamic_cast<DiamondArrow*>(c->GetOwnerComponent()->GetOwner());
+			if (n)
+			{
+				if (isDashing)
+				{
+					std::cout << " Hit Diamond Arrow" << std::endl;
+					// destroy
+					n->Destroy();
+				}
+				else
+				{
+					state = Actor::DEAD;
+
+				}
+				continue;
+			}
+		}
 		//SceneSystem::GetInstance()->GetCurrentScene()->Reset();
 		//std::cout << "Game End" << std::endl;
 		//SceneSystem::GetInstance()->SwitchScene(endScene);

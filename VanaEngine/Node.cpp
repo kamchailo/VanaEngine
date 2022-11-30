@@ -72,6 +72,7 @@ namespace Vana {
 
 	void Node::DefaultUpdate(double _dt)
 	{
+		//std::cout << "Draw Order : " << nodeID << std::endl;
 		if (!IsAlive())
 		{
 			delete this;
@@ -173,6 +174,7 @@ namespace Vana {
 	void Node::Destroy()
 	{
 		isAlive = false;
+		// @@ move kill child to real destroy
 		for (const auto& child : children)
 		{
 			child.second->Destroy();
