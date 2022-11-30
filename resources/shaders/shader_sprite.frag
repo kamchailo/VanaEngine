@@ -19,5 +19,6 @@ void main()
 	vec2 uv = TexCoord * uniform_tilling;
 	uv += uniform_tillingOffset;
 	// vec2 uv = TexCoord;
-	FragColor = texture(texture1, uv) * vec4(ourColor, 1.0);
+	// FragColor = texture(texture1, uv) * vec4(ourColor, 1.0);
+	FragColor = texture(texture1, uv);
 }
