@@ -24,10 +24,13 @@ public:
 	CollisionManager() {};
 	~CollisionManager();
 	Collider* SpawnCollider(ColliderType type, ComponentPhysics* ownerComp, float width, float height);
+	Collider* SpawnColliderInLayer(int selfLayer, int targetLayer, ColliderType type, ComponentPhysics* ownerComp, float width, float height);
+	void Init();
 	void Update();
 	void DeleteCollider(Collider* collider);
 	void BoardcastCollisionMessage();
 	void BoardScan();
+	void BoardScanLayers();
 	void NarrowScan();
 	bool DetectCollision(ColliderAABB* a, ColliderAABB* b);
 private:
@@ -36,4 +39,6 @@ private:
 	std::vector<CollideMessage> collisions;
 	static unsigned int MAX_COLLIDER_ID;
 	//unsigned int MAX_COLLIDER_ID;
+
+	std::vector<std::map<unsigned int, Collider*>> colliderLayers;
 };

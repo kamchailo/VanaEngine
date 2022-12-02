@@ -18,6 +18,8 @@ public:
 	void Update(double _dt);
 
 private:
+	void Dampen(double _dt);
+
 	Vana::Transform* transf;
 	PhysicsBody* bod;
 	glm::vec3 direction = glm::vec3(0);

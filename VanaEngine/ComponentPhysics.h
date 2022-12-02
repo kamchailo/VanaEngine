@@ -4,7 +4,7 @@
 class ComponentPhysics : public Component
 {
 public:
-	ComponentPhysics(CollisionManager& manager, glm::vec2 size);
+	ComponentPhysics(CollisionManager& manager, glm::vec2 size, int selfLayer, int targetLayer);
 	~ComponentPhysics();
 	void Init();
 	void Update(double _dt);

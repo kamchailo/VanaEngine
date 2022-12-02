@@ -15,7 +15,7 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 {
 	ComponentTransform* ct = new ComponentTransform();
 	ComponentRenderer* cr = new ComponentRenderer(tex, spriteSize);
-	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, spriteSize);
+	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, spriteSize * 0.6f, 0, 1);
 	this->AddComponent(ct);
 	this->AddComponent(cr);
 	this->AddComponent(cp);
@@ -59,6 +59,9 @@ void Actor::Update(double _dt)
 	// Catch if state == DEAD
 	if (state == Actor::DEAD)
 	{
+		// if countdown reach change state
+		// start count down
+		Dampen(_dt);
 		std::cout << "I'm DEAD" << std::endl;
 		return;
 	}
@@ -153,14 +156,7 @@ void Actor::Update(double _dt)
 	}
 	else
 	{
-		speed = 0;
-		glm::vec3 curV = bod->GetVelocity();
-		glm::vec3 dampen = glm::vec3(
-			max(0.0, curV.x - speedStep * _dt)
-			, max(0.0, curV.y - speedStep * _dt)
-			, 0.0
-		);
-		bod->SetVelocity(dampen);
+		Dampen(_dt);
 	}
 
 	// dampen
@@ -192,44 +188,52 @@ void Actor::Update(double _dt)
 
 	// Trigger when collide with something
 
-	std::vector<Collider*> collideds = this->GetComponent<ComponentPhysics>()->body
+	std::map<int, Collider*>* collideds = &(this->GetComponent<ComponentPhysics>()->body)
 		->GetCollider()->GetCollideds();
 	if (SceneSystem::GetInstance()->GetCurrentScene() == mainScene
 		&&
-		collideds.size() > 0)
+		collideds->size() > 0)
 	{
-		for (auto& c : collideds)
+		//std::cout << "collideds size : " << collideds->size() << " id : " << collideds->begin()->second->colliderID << std::endl;
+		for (auto& c : *collideds)
 		{
 			// collided with 
 			// DiamondHead
-			Node* n = dynamic_cast<DiamondHead*>(c->GetOwnerComponent()->GetOwner());
+			//collideds->erase(c.first);
+			Node* n = dynamic_cast<DiamondHead*>(c.second->GetOwnerComponent()->GetOwner());
 			if (n)
 			{
 				if (isDashing)
 				{
-					std::cout << " Hit Diamond Head" << std::endl;
+					//std::cout << " Hit Diamond Head" << std::endl;
 					n->Destroy();
+					coolDown = 0.3;
+					return;
 				}
 				else
 				{
-					state = Actor::DEAD;
+					//state = Actor::DEAD;
+					return;
 				}
 				continue;
 			}
 			// collided with 
 			// DiamondArrow
-			n = dynamic_cast<DiamondArrow*>(c->GetOwnerComponent()->GetOwner());
+			n = dynamic_cast<DiamondArrow*>(c.second->GetOwnerComponent()->GetOwner());
 			if (n)
 			{
 				if (isDashing)
 				{
-					std::cout << " Hit Diamond Arrow" << std::endl;
+					//std::cout << " Hit Diamond Arrow" << std::endl;
 					// destroy
 					n->Destroy();
+					coolDown = 0.3;
+					return;
 				}
 				else
 				{
-					state = Actor::DEAD;
+					//state = Actor::DEAD;
+					return;
 
 				}
 				continue;
@@ -241,5 +245,18 @@ void Actor::Update(double _dt)
 		//Actor* c = new Actor(texPlayer, glm::vec2(100, 100));
 		//endScene->AddExtendedNode(c);
 	}
+
+}
+
+void Actor::Dampen(double _dt)
+{
+	speed = 0;
+	glm::vec3 curV = bod->GetVelocity();
+	glm::vec3 dampen = glm::vec3(
+		max(0.0, curV.x - speedStep * _dt)
+		, max(0.0, curV.y - speedStep * _dt)
+		, 0.0
+	);
+	bod->SetVelocity(dampen);
 
 }

@@ -9,7 +9,7 @@ Enemy::Enemy(Texture* _texture, glm::vec3 _position, glm::vec3 _spriteSize, Anim
 {
 	ComponentTransform* ct = new ComponentTransform();
 	ComponentRenderer* cr = new ComponentRenderer(_texture, _spriteSize);
-	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, _spriteSize);
+	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, _spriteSize, 1, 0);
 	ComponentAnimator2D* compAnim2D = new ComponentAnimator2D();
 	this->AddComponent(ct);
 	this->AddComponent(cr);
@@ -33,13 +33,13 @@ void Enemy::Update(double _dt)
 {
 	// Check if Collide with Player
 	// Kill self
-	std::vector<Collider*> collideds = this->GetComponent<ComponentPhysics>()->body
+	std::map<int, Collider*>* collideds = &(this->GetComponent<ComponentPhysics>()->body)
 		->GetCollider()->GetCollideds();
-	if (collideds.size() > 0)
+	if (collideds->size() > 0)
 	{
-		for (auto& collider : collideds)
+		for (auto& collider : *collideds)
 		{
-			Actor* player = dynamic_cast<Actor*>(collider->GetOwnerComponent()->GetOwner());
+			Actor* player = dynamic_cast<Actor*>(collider.second->GetOwnerComponent()->GetOwner());
 			if (player)
 			{
 				CollideWithPlayer();
@@ -59,6 +59,7 @@ DiamondHead::DiamondHead(glm::vec3 _position)
 
 DiamondHead::~DiamondHead()
 {
+	
 }
 
 void DiamondHead::Update(double _dt)

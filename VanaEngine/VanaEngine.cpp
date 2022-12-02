@@ -14,15 +14,21 @@ int Vana::Init(int width, int height)
 	logSystem = new Logger("Engine");
 	logSystem->Log(LOG_INFO, "Vana Engine Initializing");
 	//graphicSystem = GraphicSystem::GetInstance();
+	
+	// Graphic Init
 	GraphicSystem::GetInstance()->Init(width, height);
-	gameUI = new GameUI(GraphicSystem::GetInstance()->GetWindow());
-	Input::GetInstance()->Init();
 	ShaderCollection::Init();
 	MeshCollection::Init();
+	gameUI = new GameUI(GraphicSystem::GetInstance()->GetWindow());
+	
+	// Input Init
+	Input::GetInstance()->Init();
 
-	// @@ change to empty scene
-	//root = new Vana::Node();
+	// Scene Init
 	SceneSystem::GetInstance()->Init();
+
+	// Physics Init
+	collisionManager.Init();
 	return 0;
 }
 
@@ -49,14 +55,17 @@ void Vana::Update()
 		// @@ Add fixed update
 		Input::GetInstance()->Update();
 		
-		// switch to scene system instead
+		// Delete Dead Node (!isAlive)
+		// before physics calculation
+		SceneSystem::GetInstance()->GetCurrentScene()->ClearDeadNode();
 
+		// call collision before update
+		// so Node Update can response to physics calculation
+		// collisionManager clear collideds
+		collisionManager.Update();
 		SceneSystem::GetInstance()->Update(deltaTime);
-		//SceneSystem::GetInstance()->GetCurrentScene()->Update(deltaTime);
-		//root->DefaultUpdate(deltaTime);
 
 		gameUI->Update();
-		collisionManager.Update();
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 		// reduce event
 		//coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());

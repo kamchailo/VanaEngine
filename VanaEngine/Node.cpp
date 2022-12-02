@@ -41,11 +41,14 @@ namespace Vana {
 
 	Node::~Node()
 	{
+		std::cout << "Node is Destroy " << nodeID << std::endl;
+		//parent->GetChildren().erase(nodeID);
+		parent->RemoveChild(nodeID);
 		for (int i = 0; i < components.size(); i++)
 		{
 			delete components[i];
 		}
-		for (auto child : children)
+		for (auto& child : children)
 		{
 			delete child.second;
 		}
@@ -72,11 +75,11 @@ namespace Vana {
 
 	void Node::DefaultUpdate(double _dt)
 	{
-		//std::cout << "Draw Order : " << nodeID << std::endl;
-		if (!IsAlive())
+		if (!isAlive)
 		{
-			delete this;
+			return;
 		}
+		//std::cout << "Draw Order : " << nodeID << std::endl;
 		for (Component* c : components)
 		{
 			c->Update(_dt);
@@ -113,6 +116,11 @@ namespace Vana {
 	std::map<unsigned int, Node*> Node::GetChildren()
 	{
 		return children;
+	}
+
+	void Node::RemoveChild(int childNodeID)
+	{
+		children.erase(childNodeID);
 	}
 
 
@@ -171,6 +179,21 @@ namespace Vana {
 	{
 		return isAlive;
 	}
+
+	void Node::CheckIsDestroy(std::vector<Node*>& collector)
+	{
+		//std::cout << "Get destroyed " << isAlive << std::endl;
+		for (const auto& child : children)
+		{
+			child.second->CheckIsDestroy(collector);
+		}
+		if (!isAlive)
+		{
+			//delete this;
+			collector.push_back(this);
+		}
+	}
+
 	void Node::Destroy()
 	{
 		isAlive = false;

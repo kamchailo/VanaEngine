@@ -53,23 +53,84 @@ Collider* CollisionManager::SpawnCollider(ColliderType type, ComponentPhysics* o
 	return collider;
 }
 
+Collider* CollisionManager::SpawnColliderInLayer(int selfLayer, int targetLayer, ColliderType type, ComponentPhysics* ownerComp, float width, float height)
+{
+	
+
+
+	Collider* collider = NULL;
+	int id = ++MAX_COLLIDER_ID;
+	switch (type)
+	{
+	case COLLIDER_AABB:
+		collider = new ColliderAABB(id
+			, ownerComp
+			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
+			, glm::vec3(width / 2.0, height / 2.0, 0.0));
+		//collider = new ColliderAABB(id, glm::vec3(-width, -height , 0.0), glm::vec3(width, height, 0.0));
+		/*
+		* @@ turn off OOBB
+		*/
+		collider->narrowCollider = new ColliderOOBB(id
+			, ownerComp
+			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
+			, glm::vec3(width / 2.0, height / 2.0, 0.0));
+		break;
+	case COLLIDER_OOBB:
+		collider = new ColliderOOBB(id
+			, ownerComp
+			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
+			, glm::vec3(width / 2.0, height / 2.0, 0.0));
+		break;
+	case COLLIDER_CIRCLE:
+		break;
+	default:
+		break;
+	}
+	if (collider)
+	{
+		//colliders[id] = collider;
+		collider->selfLayer = selfLayer;
+		collider->targerLayer = targetLayer;
+		colliderLayers[selfLayer][id] = collider;
+	}
+	return collider;
+}
+
+void CollisionManager::Init()
+{
+	colliderLayers.resize(5);
+
+}
+
 void CollisionManager::Update()
 {
 	narrowColliders.clear();
-	for (auto& colliderI : colliders)
+	//for (auto& colliderI : colliders)
+	//{
+	//	colliderI.second->Update();
+	//	//delete (&collider);
+	//	colliderI.second->ResetCollided();
+	//}
+	for (auto& clayer : colliderLayers)
 	{
-		colliderI.second->Update();
-		//delete (&collider);
-		colliderI.second->ResetCollided();
+		for (auto& c : clayer)
+		{
+			c.second->Update();
+			c.second->ResetCollided();
+		}
 	}
-	BoardScan();
+
+	//BoardScan();
+	BoardScanLayers();
 	NarrowScan();
 	//BoardcastCollisionMessage();
 }
 
 void CollisionManager::DeleteCollider(Collider* collider)
 {
-	colliders.erase(collider->colliderID);
+	//colliders.erase(collider->colliderID);
+	colliderLayers[collider->selfLayer].erase(collider->colliderID);
 	delete collider;
 }
 
@@ -107,30 +168,34 @@ void CollisionManager::BoardScan()
 		}
 		++itI;
 	}
-	/*
-	// do board scan
-	for (auto& colliderI : colliders)
-	{
+}
 
-		// Check if collider component owner isAlive
-		if (!colliderI.second->GetOwnerComponent()->GetOwner()->IsAlive()) { break; }
-		// @@ only check one which is not checked yet
-		for (auto& colliderJ : colliders)
+void CollisionManager::BoardScanLayers()
+{
+	std::map<unsigned int, Collider*>::iterator itC, itT;
+	for (int i = 0; i < colliderLayers.size() - 1; ++i)
+	{
+		// for each colliders in colliderLayer[i]
+		for (auto& c : colliderLayers[i])
 		{
-			// Check if collider component owner isAlive
-			if (!colliderJ.second->GetOwnerComponent()->GetOwner()->IsAlive()) { break; }
-			if (colliderI != colliderJ)
+			//std::vector<Collider*>* targetLayer = &colliderLayers[c->targerLayer];
+			// for each colliders in targetLayer
+
+			for (auto& t : colliderLayers[c.second->targerLayer])
 			{
-				// if (colliderI.collide(colliderJ))
-				if (colliderI.second->Collide(colliderJ.second))
+				if (c.second->colliderID != t.second->colliderID)
 				{
-					//std::cout << "FOUND COLLISION" << std::endl;
-					narrowColliders.push_back(NarrowMessage(colliderI.second, colliderJ.second));
+					if (c.second->Collide(t.second))
+					{
+						// Collide
+						//std::cout << "Collision " << c.second->colliderID << " with " << t.second->colliderID << std::endl;
+					
+						narrowColliders.push_back(NarrowMessage(c.second, t.second));
+					}
 				}
 			}
 		}
 	}
-	*/
 }
 
 void CollisionManager::NarrowScan()
@@ -168,7 +233,7 @@ void CollisionManager::NarrowScan()
 			//std::cout << "NARROW FOUND COLLISION" << std::endl;
 			// @@ optimized by add both
 			narrowColliders[i].a->AddCollided(colliderB);
-			narrowColliders[i].b->AddCollided(colliderA);
+			//narrowColliders[i].b->AddCollided(colliderA);
 		}
 	}
 }

@@ -40,10 +40,18 @@ void Scene::Unload()
 	delete root;
 }
 
+void Scene::ClearDeadNode()
+{
+	std::vector<Vana::Node*> deadCollector;
+	root->CheckIsDestroy(deadCollector);
+	for (auto& d : deadCollector)
+	{
+		delete d;
+	}
+}
+
 void Scene::Update(double _dt)
 {
-	// @@ switch scene
-
 	root->DefaultUpdate(_dt);
 }
 

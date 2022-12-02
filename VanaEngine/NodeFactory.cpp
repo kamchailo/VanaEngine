@@ -163,7 +163,7 @@ void NodeFactory::AttachTree(Vana::Node& root, nlohmann::json const& children)
             // Build Renderer and PhysicsBody
             ComponentTransform* compTransform = new ComponentTransform();
             ComponentRenderer* compRenderer = new ComponentRenderer(texture, glm::vec2(width, height));
-            ComponentPhysics* compPhysics = new ComponentPhysics(Vana::collisionManager, glm::vec2(width, height));
+            ComponentPhysics* compPhysics = new ComponentPhysics(Vana::collisionManager, glm::vec2(width, height), 3, 4);
                 
             node->AddComponent(compTransform);
             node->AddComponent(compRenderer);

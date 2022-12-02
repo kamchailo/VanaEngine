@@ -15,6 +15,7 @@ public:
 	void Reset();
 	void Load();
 	void Unload();
+	void ClearDeadNode();
 	void Update(double _dt);
 	Vana::Node* GetRoot() const;
 	void AddExtendedNode(Vana::Node* _node);
