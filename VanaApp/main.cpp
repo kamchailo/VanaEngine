@@ -21,7 +21,7 @@ int main()
 	// Init Texture
 	texPlayer = new Texture("../resources/textures/spriteSheet-test.jpg", FALSE);
 	texDiamondHead = new Texture("../resources/textures/spriteSheet-test.jpg", FALSE);
-	texDiamondArrow = new Texture("../resources/textures/diamondArrowIdle-1.png", TRUE);
+	texDiamondArrow = new Texture("../resources/textures/diamondArrowIdle.png", TRUE);
 
 	// Init Player
 	player = new Actor(texPlayer, glm::vec2(50, 50));
@@ -36,7 +36,7 @@ int main()
 	diamondHeadIdle->SetMaxDuration(2.0);
 
 	// DiamondArrow Animation
-	diamondArrowIdle = new Animation2D(texDiamondArrow, 3, 3, true, true);
+	diamondArrowIdle = new Animation2D(texDiamondArrow, 3, 1, true, true);
 	diamondArrowIdle->AddKeyFrame(0, 0);
 	diamondArrowIdle->AddKeyFrame(0.16, 0);
 	diamondArrowIdle->AddKeyFrame(0.32, 0);

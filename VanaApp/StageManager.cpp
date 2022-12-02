@@ -18,8 +18,9 @@ void StageManager::Init()
 
 void StageManager::Update(double _dt)
 {
-	if (GetChildren().size() >= 40)
+	if (GetChildren().size() >= 800)
 	{
+		//std::cout << "Hit Enemy count Limit" << std::endl;
 		return;
 	}
 	// spawn diamondHead and more frequent over time
@@ -34,6 +35,7 @@ void StageManager::Update(double _dt)
 	arrowTime += _dt;
 	if (arrowTime > arrowSpawnTime)
 	{
+		// Can not spawn to every children spawn to only Diamond Head
 		for (auto& c : this->GetChildren())
 		{
 			DiamondArrow* a = new DiamondArrow(c.second->GetPosition());
@@ -47,6 +49,7 @@ void StageManager::Update(double _dt)
 
 glm::vec3 StageManager::RandomPosition()
 {
+	std::srand(std::time(nullptr));
 	int x = (((double)std::rand() / RAND_MAX) - 0.5) * levelSize.x;
 	int y = (((double)std::rand() / RAND_MAX) - 0.5) * levelSize.y;
 	//std::cout << "Spawn at " << x << ", " << y << std::endl;

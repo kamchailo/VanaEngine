@@ -36,9 +36,9 @@ public:
 
 	std::vector<glm::vec3>& GetVertices() { return vertices; }
 	//virtual void CheckCollision(std::vector<Collider*> const* colliders) = 0;
-	std::vector<Collider*>& GetCollideds() { return collideds; }
+	std::map<int, Collider*>& GetCollideds() { return collideds; }
 	void AddCollided(Collider* collider) {
-		collideds.push_back(collider);
+		collideds[collider->colliderID] = collider;
 	}
 	void ResetCollided() {
 		collideds.clear();
@@ -49,6 +49,10 @@ public:
 	const unsigned int colliderID;
 	// Scene System
 	ComponentPhysics* GetOwnerComponent() const { return ownerComponent; }
+
+	// Collision Layer
+	int selfLayer;
+	int targerLayer;
 protected:
 	Collider(unsigned int colliderID, ColliderType type, ComponentPhysics* _ownerComp) 
 		: colliderID(colliderID)
@@ -60,9 +64,10 @@ protected:
 	glm::vec3 rotation;
 	glm::vec3 scale;
 	std::vector< glm::vec3> vertices;
-	std::vector<Collider*> collideds;
+	std::map<int, Collider*> collideds;
 	// Scene System
 	ComponentPhysics* ownerComponent;
+
 
 private:
 };

@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "ComponentPhysics.h"
 
-ComponentPhysics::ComponentPhysics(CollisionManager& _manager, glm::vec2 size)
+ComponentPhysics::ComponentPhysics(CollisionManager& _manager, glm::vec2 size, int selfLayer, int targetLayer)
 {
 	this->manager = &_manager;
-	Collider* collider = this->manager->SpawnCollider(COLLIDER_AABB, this, size.x, size.y);
+	Collider* collider = this->manager->SpawnColliderInLayer(selfLayer, targetLayer, COLLIDER_AABB, this, size.x, size.y);
 	body = new PhysicsBody(1, this, collider);
 	//this->collider = manager.SpawnCollider(COLLIDER_AABB, size.x, size.y);
 	//std::cout << "Collider ID: " << collider->colliderID << std::endl;

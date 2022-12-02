@@ -24,6 +24,7 @@ namespace Vana {
 		Node const* GetParent() const;
 		Node const* GetChild(unsigned int);
 		std::map< unsigned int, Node*> GetChildren();
+		void RemoveChild(int nodeId);
 
 		// Game Update
 		virtual void DefaultInit();
@@ -65,6 +66,7 @@ namespace Vana {
 		// Scene System
 		bool IsAwake();
 		bool IsAlive();
+		void CheckIsDestroy(std::vector<Node*>& collector);
 		void Destroy();
 	private:
 		// Editor
