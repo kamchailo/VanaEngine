@@ -35,7 +35,7 @@ int main()
 
 	// Init Player
 	actorDebug = new ActorDebug("ActorDebug", 200, 100);
-	Vana::gameUI->AddUiWindow(actorDebug);
+	//Vana::gameUI->AddUiWindow(actorDebug);
 	player = new Actor(texPlayer, glm::vec2(50, 50));
 	mainScene->AddExtendedNode(player);
 

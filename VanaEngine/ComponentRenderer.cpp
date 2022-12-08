@@ -8,6 +8,7 @@ ComponentRenderer::ComponentRenderer()
 	this->shader = ShaderCollection::default2D;
 	this->texture = NULL;
 	this->spriteSize = glm::vec2(99.0,99.0);
+	this->alpha = false;
 }
 
 ComponentRenderer::ComponentRenderer(Mesh* mesh, Shader* shader, Texture* texture, glm::vec2 size)
@@ -19,6 +20,7 @@ ComponentRenderer::ComponentRenderer(Mesh* mesh, Shader* shader, Texture* textur
 	this->spriteSize = size;
 	this->tilling = glm::vec2(1);
 	this->tillingOffset = glm::vec2(0);
+	this->alpha = texture->Alpha();
 }
 
 ComponentRenderer::ComponentRenderer(Texture* texture, glm::vec2 size)
@@ -30,6 +32,7 @@ ComponentRenderer::ComponentRenderer(Texture* texture, glm::vec2 size)
 	this->spriteSize = size;
 	this->tilling = glm::vec2(1);
 	this->tillingOffset = glm::vec2(0);
+	this->alpha = texture->Alpha();
 }
 
 void ComponentRenderer::Init()
@@ -38,7 +41,16 @@ void ComponentRenderer::Init()
 
 void ComponentRenderer::Update(double _dt)
 {
-	Draw();
+	//Draw();
+	if (alpha)
+	{
+		GraphicSystem::GetInstance()->RegisterAlphaComponent(GetOwner()->GetPosition().z, this);
+	}
+	else
+	{
+		GraphicSystem::GetInstance()->RegisterOpaqueComponent(this);
+	}
+
 }
 
 void ComponentRenderer::Shutdown()

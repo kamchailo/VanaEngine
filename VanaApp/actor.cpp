@@ -143,7 +143,7 @@ void Actor::Update(double _dt)
 		dashSpeed = dashActive;
 		isDashing = true;
 		coolDown = maxCoolDown;
-		//speed = maxSpeed;
+		speed = maxSpeed;
 	}
 
 	// Create normalized direction

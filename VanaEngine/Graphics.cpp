@@ -75,9 +75,10 @@ int GraphicSystem::Init(int width, int height)
 	// Everything is ok
 
 	// GL ENABLE
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	opaqueComponents.reserve(20);
 
 	return 0; 
 }
@@ -99,12 +100,42 @@ int GraphicSystem::GraphicUpdate()
 	return 0;
 }
 
+void GraphicSystem::DrawScene()
+{
+	// Draw Opaque
+	glEnable(GL_DEPTH_TEST);
+	for (auto& o : opaqueComponents)
+	{
+		o->Draw();
+	}
+	// Sort Alpha to multimap
+	// Draw Alpha
+	glDisable(GL_DEPTH_TEST);
+	for (auto& a : alphaComponents)
+	{
+		a.second->Draw();
+	}
+	// Clear multimap contains alpha
+	opaqueComponents.clear();
+	alphaComponents.clear();
+}
+
 int GraphicSystem::GraphiceSwapBuffer()
 {
 	// glfw : swap buffers and poll IO events
 	glfwSwapBuffers(window);
 	glfwPollEvents();
 	return 0;
+}
+
+void GraphicSystem::RegisterOpaqueComponent(ComponentRenderer* _comp)
+{
+	opaqueComponents.push_back(_comp);
+}
+
+void GraphicSystem::RegisterAlphaComponent(float _depth, ComponentRenderer* _comp)
+{
+	alphaComponents.insert(std::pair(_depth, _comp));
 }
 
 void GraphicSystem::SetBackgroundColor(glm::vec3 _color)
