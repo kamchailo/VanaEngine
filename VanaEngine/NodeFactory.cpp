@@ -3,17 +3,17 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 
-const std::string NODE_ROOT = "root";
+const std::string NODE_ROOT     = "root";
 const std::string NODE_CHILDREN = "Children";
-const std::string NODE_BODY_2D = "Body2D";
-const std::string NODE_SPRITE = "Sprite";
-const std::string NAME = "Name";
-const std::string POSITION = "Position";
-const std::string ROTATION = "Rotation";
-const std::string SCALE = "Scale";
-const std::string WIDTH = "Width";
-const std::string HEIGHT = "Height";
-const std::string TEXTURE = "Texture";
+const std::string NODE_BODY_2D  = "Body2D";
+const std::string NODE_SPRITE   = "Sprite";
+const std::string NAME          = "Name";
+const std::string POSITION      = "Position";
+const std::string ROTATION      = "Rotation";
+const std::string SCALE         = "Scale";
+const std::string WIDTH         = "Width";
+const std::string HEIGHT        = "Height";
+const std::string TEXTURE       = "Texture";
 
 
 NodeFactory::NodeFactory()
@@ -22,10 +22,10 @@ NodeFactory::NodeFactory()
 
 NodeFactory::~NodeFactory()
 {
-    for (auto n : nodes)
-    {
-        delete n.second;
-    }
+    //for (auto n : nodes)
+    //{
+    //    delete n.second;
+    //}
 }
 
 Vana::Node& NodeFactory::CreateScene(std::string _filename)
@@ -158,7 +158,7 @@ void NodeFactory::AttachTree(Vana::Node& root, nlohmann::json const& children)
                 //vana_default_texture.png
                 textureLoc = "default/vana_default_texture.png";
             }
-            texture = new Texture(textureLoc.c_str(), FALSE);
+            texture = new Texture(textureLoc.c_str());
 
             // Build Renderer and PhysicsBody
             ComponentTransform* compTransform = new ComponentTransform();
@@ -268,7 +268,7 @@ void NodeFactory::AttachTree(Vana::Node& root, nlohmann::json const& children)
             //vana_default_texture.png
             textureLoc = "default/vana_default_texture.png";
         }
-        texture = new Texture(textureLoc.c_str(), FALSE);
+        texture = new Texture(textureLoc.c_str());
 
         // Build Renderer and PhysicsBody
         ComponentTransform* compTransform = new ComponentTransform();

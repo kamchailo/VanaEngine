@@ -22,6 +22,7 @@ void Input::Init()
 	this->SetKeyToAction(GLFW_KEY_LEFT, INPUT_KEY_LEFT);
 	this->SetKeyToAction(GLFW_KEY_RIGHT, INPUT_KEY_RIGHT);
 	this->SetKeyToAction(GLFW_KEY_SPACE, INPUT_KEY_INTERACT);
+	this->SetKeyToAction(GLFW_KEY_R, INPUT_KEY_RESET);
 	for (int i = 0; i < MAX_KEYS; i++)
 	{
 		isPressedArray[i] = false;

@@ -159,14 +159,19 @@
     <ClCompile Include="ActorDebug.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="InputListener.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ScoreSprite.cpp" />
     <ClCompile Include="StageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actor.h" />
     <ClInclude Include="ActorDebug.h" />
+    <ClInclude Include="CallBackFunction.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="InputListener.h" />
+    <ClInclude Include="ScoreSprite.h" />
     <ClInclude Include="StageManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

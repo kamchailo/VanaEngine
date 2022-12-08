@@ -79,6 +79,11 @@ void ComponentRenderer::Draw()
 	}
 }
 
+void ComponentRenderer::ChangeTexture(Texture* _texture)
+{
+	texture = _texture;
+}
+
 void ComponentRenderer::SetTilling(glm::vec2 _tilling)
 {
 	this->tilling = _tilling;

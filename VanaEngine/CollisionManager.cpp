@@ -27,13 +27,13 @@ Collider* CollisionManager::SpawnCollider(ColliderType type, ComponentPhysics* o
 			, glm::vec3(-width/2.0, -height/2.0, 0.0)
 			, glm::vec3(width/2.0, height/2.0, 0.0));
 		//collider = new ColliderAABB(id, glm::vec3(-width, -height , 0.0), glm::vec3(width, height, 0.0));
-		/*
-		* @@ turn off OOBB
+		
+		// @@ turn off OOBB
 		collider->narrowCollider = new ColliderOOBB(id
 			, ownerComp
 			, glm::vec3(-width / 2.0, -height / 2.0, 0.0)
 			, glm::vec3(width / 2.0, height / 2.0, 0.0));
-		*/
+		
 		break;
 	case COLLIDER_OOBB:
 		collider = new ColliderOOBB(id

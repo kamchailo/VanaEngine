@@ -14,6 +14,7 @@ class Animation2D
 public:
 	Animation2D(Texture* _texture, int _col, int _row, bool _isRepeat, bool _autoplay);
 	unsigned int GetID() const;
+	Texture* GetTexture() const;
 	int GetKeyframesSize() const;
 	void SetRepeat(bool _repeat);
 	bool IsRepeat() const;

@@ -15,6 +15,9 @@
     <Filter Include="3-Utilities">
       <UniqueIdentifier>{86ce50f1-5cc2-400b-8180-a9f8ed09152f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{c6ccf37c-b39f-4374-827b-936de51d7eb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +38,12 @@
     <ClCompile Include="ActorDebug.cpp">
       <Filter>3-Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreSprite.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InputListener.cpp">
+      <Filter>1-Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actor.h">
@@ -50,6 +59,15 @@
       <Filter>2- Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ActorDebug.h">
+      <Filter>3-Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreSprite.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>3-Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CallBackFunction.h">
       <Filter>3-Utilities</Filter>
     </ClInclude>
   </ItemGroup>

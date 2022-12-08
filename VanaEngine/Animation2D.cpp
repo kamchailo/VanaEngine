@@ -19,6 +19,11 @@ unsigned int Animation2D::GetID() const
 	return id;
 }
 
+Texture* Animation2D::GetTexture() const
+{
+	return texture;
+}
+
 int Animation2D::GetKeyframesSize() const
 {
 	return keyframes.size();

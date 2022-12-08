@@ -23,7 +23,7 @@ namespace Vana {
 		void AddChild(Node*);
 		Node const* GetParent() const;
 		Node const* GetChild(unsigned int);
-		std::map< unsigned int, Node*> GetChildren();
+		std::map< unsigned int, Node*> GetChildren() const;
 		void RemoveChild(int nodeId);
 
 		// Game Update
