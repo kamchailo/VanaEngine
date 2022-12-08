@@ -71,6 +71,7 @@ void Vana::Update()
 		//coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());
 
 	}
+	SceneSystem::GetInstance()->GetCurrentScene()->Unload();
 	Vana::Terminate();
 }
 

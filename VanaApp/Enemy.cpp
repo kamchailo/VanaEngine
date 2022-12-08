@@ -7,16 +7,18 @@ Enemy::Enemy(Texture* _texture, glm::vec3 _position, glm::vec3 _spriteSize, Anim
 	, texture(_texture)
 	, idle(_idle)
 {
+	this->SetPosition(_position);
 	ComponentTransform* ct = new ComponentTransform();
 	ComponentRenderer* cr = new ComponentRenderer(_texture, _spriteSize);
 	ComponentPhysics* cp = new ComponentPhysics(Vana::collisionManager, _spriteSize, 1, 0);
+	// Set Collider position to prevent bug spawn at origin
+	cp->body->GetCollider()->SetPosition(_position);
 	ComponentAnimator2D* compAnim2D = new ComponentAnimator2D();
 	this->AddComponent(ct);
 	this->AddComponent(cr);
 	this->AddComponent(cp);
 	this->AddComponent(compAnim2D);
 	body = GetComponent<ComponentPhysics>()->body;
-	this->SetPosition(_position);
 }
 
 Enemy::~Enemy()

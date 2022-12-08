@@ -15,7 +15,7 @@ Scene::Scene(NodeFactory& _factory, std::string _path)
 
 Scene::~Scene()
 {
-	delete root;
+	//delete root;
 }
 
 void Scene::Reset()
@@ -36,6 +36,7 @@ void Scene::Load()
 
 void Scene::Unload()
 {
+	extendedNodes.clear();
 	root->Destroy();
 	delete root;
 }

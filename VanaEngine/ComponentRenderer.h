@@ -19,6 +19,7 @@ public:
 	void Shutdown();
 	virtual void HandleEvent(Event* _event);
 	void Draw();
+	void ChangeTexture(Texture* _texture);
 	void SetTilling(glm::vec2 _tilling);
 	void SetTillingOffset(glm::vec2 _tillingOffset);
 private:

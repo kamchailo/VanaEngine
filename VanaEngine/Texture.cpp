@@ -2,7 +2,7 @@
 #include "Texture.h"
 #include "Graphics.h"
 
-Texture::Texture(char* texturePath, bool alpha)
+Texture::Texture(char* texturePath)
 {
     glGenTextures(1, &ID);
     glBindTexture(GL_TEXTURE_2D, ID);
@@ -12,11 +12,20 @@ Texture::Texture(char* texturePath, bool alpha)
     unsigned char* data = stbi_load(texturePath, &width, &height, &nrChannels, 0);
     GLenum format;
     if (nrChannels == 1)
+    {
         format = GL_RED;
+        alpha = false;
+    }
     else if (nrChannels == 3)
+    {
         format = GL_RGB;
+        alpha = false;
+    }
     else if (nrChannels == 4)
+    {
         format = GL_RGBA;
+        alpha = true;
+    }
     if (data)
     {
         //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -38,7 +47,7 @@ Texture::Texture(char* texturePath, bool alpha)
     stbi_image_free(data);
 }
 
-Texture::Texture(const char* texturePath, bool alpha)
+Texture::Texture(const char* texturePath)
 {
     glGenTextures(1, &ID);
     glBindTexture(GL_TEXTURE_2D, ID);
@@ -48,11 +57,20 @@ Texture::Texture(const char* texturePath, bool alpha)
     unsigned char* data = stbi_load(texturePath, &width, &height, &nrChannels, 0);
     GLenum format;
     if (nrChannels == 1)
+    {
         format = GL_RED;
+        alpha = false;
+    }
     else if (nrChannels == 3)
+    {
         format = GL_RGB;
+        alpha = false;
+    }
     else if (nrChannels == 4)
+    {
         format = GL_RGBA;
+        alpha = true;
+    }
     if (data)
     {
         //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -83,4 +101,9 @@ void Texture::Bind(int unit)
 {
     glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, ID);
+}
+
+bool Texture::Alpha() const
+{
+    return alpha;
 }

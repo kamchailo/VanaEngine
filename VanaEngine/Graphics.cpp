@@ -14,7 +14,8 @@ int GraphicSystem::Init(int width, int height)
 {
 	logGraphic = new Logger("Graphics");
 	windowSize = glm::vec2(width, height);
-	viewMatrix = glm::scale(glm::mat4(1), glm::vec3(2.0f / windowSize.x, 2.0f / windowSize.y, 1.0));
+	viewScale = glm::vec2(1.0);
+	viewMatrix = glm::scale(glm::mat4(1), glm::vec3((2.0f * viewScale.x) / windowSize.x, (2.0f * viewScale.y) / windowSize.y, 1.0));
 	//std::cout << ">> 1. GLFW INIT" << std::endl;
 	// ================================
 	//			  Init GLFW
@@ -90,9 +91,9 @@ int GraphicSystem::GraphicUpdate()
 	// input
 	processInput(window);
 	// change viewMat
-	viewMatrix = glm::scale(glm::mat4(1), glm::vec3(2.0f / windowSize.x, 2.0f / windowSize.y, 1.0));
+	viewMatrix = glm::scale(glm::mat4(1), glm::vec3((2.0f * viewScale.x) / windowSize.x, (2.0f * viewScale.y) / windowSize.y, 1.0));
 	// Rendering Commands vvv
-	glClearColor(0.0f, 1.0f, 0.7f, 1.0f);
+	glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	return 0;
@@ -104,6 +105,16 @@ int GraphicSystem::GraphiceSwapBuffer()
 	glfwSwapBuffers(window);
 	glfwPollEvents();
 	return 0;
+}
+
+void GraphicSystem::SetBackgroundColor(glm::vec3 _color)
+{
+	backgroundColor = _color;
+}
+
+void GraphicSystem::SetViewScale(glm::vec2 _scale)
+{
+	viewScale = _scale;
 }
 
 GLFWwindow* GraphicSystem::GetWindow()

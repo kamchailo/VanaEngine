@@ -1,9 +1,6 @@
 #pragma once
 #include <VanaEngine.h>
 
-class ActorDebug;
-
-
 class Actor : public Vana::Node
 {
 	enum PlayerState
@@ -28,7 +25,8 @@ private:
 	const float maxSpeed = 400.0f;
 	bool isDashing = false;
 	float dashSpeed = 1.0f;
-	const float dashActive = 10.0f;
+	const float dashActive = 5.0f;
+	const float dashDamped = 3.0f;
 	double coolDown = 0.0;
 	const double maxCoolDown = 1.5;
 
@@ -36,6 +34,7 @@ private:
 
 	// Animation
 	Texture* idleTex;
+	Texture* dashTex;
 	Animation2D* idle;
-	ActorDebug* actorDebug;
+	Animation2D* dashAnim;
 };

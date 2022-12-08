@@ -70,4 +70,9 @@ Animator2D* ComponentAnimator2D::GetAnimator2D() const
 void ComponentAnimator2D::SetPlayingAnimation(Animation2D* _animation)
 {
 	animator->SetAnimation(_animation);
+	ComponentRenderer* renderer = owner->GetComponent<ComponentRenderer>();
+	if (renderer)
+	{
+		renderer->ChangeTexture(_animation->GetTexture());
+	}
 }

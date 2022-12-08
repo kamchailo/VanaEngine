@@ -3,12 +3,17 @@
 #include <Input.h>
 #include "ActorDebug.h"
 #include "Enemy.h"
+#include "ScoreSprite.h"
+#include "InputListener.h"
 
 #include "global.h"
+
+#include "CallBackFunction.h"
 
 float i = 0;
 //float x = 400, y = 400;
 float x = 0, y = 0;
+int currentScore = 0;
 Actor::Actor(Texture* tex, glm::vec2 spriteSize) 
 	: Node()
 	, idleTex(tex)
@@ -20,13 +25,12 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 	this->AddComponent(cr);
 	this->AddComponent(cp);
 	bod = GetComponent<ComponentPhysics>()->body;
-	actorDebug = new ActorDebug("ActorDebug", 200, 100);
-	Vana::gameUI->AddUiWindow(actorDebug);
+	
 	ComponentAnimator2D* compAnim2D = new ComponentAnimator2D();
 	this->AddComponent(compAnim2D);
 	idle = new Animation2D(idleTex, 4, 4, true, true);
+	idle->SetMaxDuration(16.0);
 	idle->AddKeyFrame(0, 0);
-	idle->AddKeyFrame(1, 1);
 	idle->AddKeyFrame(1, 1);
 	idle->AddKeyFrame(2, 2);
 	idle->AddKeyFrame(3, 3);
@@ -42,7 +46,13 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 	idle->AddKeyFrame(13, 13);
 	idle->AddKeyFrame(14, 14);
 	idle->AddKeyFrame(15, 15);
-	idle->SetMaxDuration(16.0);
+
+	dashTex = new Texture("../resources/textures/diamondArrowIdle.png");
+	dashAnim = new Animation2D(dashTex, 3, 1, true, true);
+	dashAnim->SetMaxDuration(0.48);
+	dashAnim->AddKeyFrame(0, 0);
+	dashAnim->AddKeyFrame(0.16, 1);
+	dashAnim->AddKeyFrame(0.32, 2);
 }
 
 void Actor::Init()
@@ -52,6 +62,8 @@ void Actor::Init()
 
 	//this->Scale(glm::vec3(1.0, 0.2, 1.0));
 	this->SetPosition(glm::vec3(0, 0, 0));
+
+	currentScore = 0.0;
 }
 
 void Actor::Update(double _dt)
@@ -63,6 +75,14 @@ void Actor::Update(double _dt)
 		// start count down
 		Dampen(_dt);
 		std::cout << "I'm DEAD" << std::endl;
+
+		//SceneSystem::GetInstance()->GetCurrentScene()->Reset();
+		SceneSystem::GetInstance()->SwitchScene(endScene);
+		ScoreBoard* result = new ScoreBoard(texScore, glm::vec2(100), glm::vec3(50, 50, 0));
+		result->SetScore(currentScore);
+		endScene->AddExtendedNode(result);
+		InputListener* listener = new InputListener(INPUT_KEY_RESET, &ResetGame);
+		endScene->AddExtendedNode(listener);
 		return;
 	}
 
@@ -118,26 +138,13 @@ void Actor::Update(double _dt)
 	//	speed = max(maxSpeed , speed + speedStep * _dt);
 	//}
 
-	if (Input::GetInstance()->IsPressed(INPUT_KEY_INTERACT) && !isDashing && coolDown == 0)
+	if (Input::GetInstance()->IsPressed(INPUT_KEY_INTERACT) && !isDashing && coolDown == 0 && speed > 0)
 	{
 		dashSpeed = dashActive;
 		isDashing = true;
 		coolDown = maxCoolDown;
+		//speed = maxSpeed;
 	}
-
-	// Create direction
-	//glm::vec3 dir = glm::vec3(x, y, 0);
-	//if (glm::length(dir) > 0)
-	//{
-	//	dir = glm::normalize(dir);
-	//}
-	//dir *= speedStep * 1000 * _dt;
-	//direction += dir;
-	//direction = glm::clamp(direction, glm::vec3(-maxSpeed), glm::vec3(maxSpeed));
-	//std::cout << "x,y : " << direction.x <<", "<< direction.y << std::endl;
-	//std::cout << "x,y : " << direction.x << ", " << direction.y 
-	//	<< " || glm::length(direction) : " << glm::length(direction) << std::endl;
-
 
 	// Create normalized direction
 	direction = glm::vec3(x, y, 0);
@@ -165,35 +172,42 @@ void Actor::Update(double _dt)
 
 	if (isDashing)
 	{
-		dashSpeed = max(1, dashSpeed - dashActive * 10 * _dt);
+		dashSpeed = max(1, dashSpeed - dashActive * dashDamped * _dt);
 		if (dashSpeed == 1)
 		{
 			isDashing = false;
 		}
+		float rotation = atan2(direction.y, direction.x);
+		rotation = rotation * 57.2958;
+		SetRotation(glm::vec3(0, 0, rotation));
+		actorDebug->SetText4("rotX " +std::to_string(rotation));
+		this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(dashAnim);
 	}
 	else
 	{
-
+		SetRotation(glm::vec3(0));
+		this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(idle);
 	}
 	//Imgui Debug
 	actorDebug->SetText1(std::to_string(isDashing));
 	actorDebug->SetText2(std::to_string(coolDown));
-	actorDebug->SetText3(std::to_string(x) + " " + std::to_string(y));
-	actorDebug->SetText4(
-		+ " speed "
+	//actorDebug->SetText3(std::to_string(x) + " " + std::to_string(y));
+	actorDebug->SetText3(
+		+ "speed "
 		+ std::to_string(speed)
 		+ " move "
 		+ std::to_string(direction.x * speed * dashSpeed));
 
 
 	// Trigger when collide with something
-
 	std::map<int, Collider*>* collideds = &(this->GetComponent<ComponentPhysics>()->body)
 		->GetCollider()->GetCollideds();
 	if (SceneSystem::GetInstance()->GetCurrentScene() == mainScene
 		&&
 		collideds->size() > 0)
 	{
+		const Vana::Node* stg = collideds->begin()->second->GetOwnerComponent()->GetOwner()->GetParent();
+		actorDebug->SetText5(std::to_string(stg->nodeID) + " stage Man Children : " + std::to_string(stg->GetChildren().size()));
 		//std::cout << "collideds size : " << collideds->size() << " id : " << collideds->begin()->second->colliderID << std::endl;
 		for (auto& c : *collideds)
 		{
@@ -208,6 +222,8 @@ void Actor::Update(double _dt)
 					//std::cout << " Hit Diamond Head" << std::endl;
 					n->Destroy();
 					coolDown = 0.3;
+					++currentScore;
+					scoreBoard->SetScore(currentScore);
 					return;
 				}
 				else
@@ -232,7 +248,12 @@ void Actor::Update(double _dt)
 				}
 				else
 				{
-					//state = Actor::DEAD;
+					// Grace Period
+					if (false)
+					{
+						return;
+					}
+					state = Actor::DEAD;
 					return;
 
 				}

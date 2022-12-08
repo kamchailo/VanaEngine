@@ -13,6 +13,7 @@ enum InputAction
 	INPUT_KEY_UP,
 	INPUT_KEY_DOWN,
 	INPUT_KEY_INTERACT,
+	INPUT_KEY_RESET
 };
 
 class Input

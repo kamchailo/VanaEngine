@@ -17,7 +17,6 @@ namespace Vana {
 	{
 		this->name = "noname";
 		this->nodeID = ++Node::nodeIDMax;
-		//this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
 		this->parentTransform = parentNode->parentTransform;
@@ -30,7 +29,6 @@ namespace Vana {
 	{
 		this->name = name;
 		this->nodeID = ++Node::nodeIDMax;
-		//this->parent = parentNode;
 		parentNode->AddChild(this);
 		this->transform = Transform();
 		this->parentTransform = parentNode->parentTransform;
@@ -41,16 +39,26 @@ namespace Vana {
 
 	Node::~Node()
 	{
-		std::cout << "Node is Destroy " << nodeID << std::endl;
+		//std::cout << "Node is Destroy " << nodeID << std::endl;
 		//parent->GetChildren().erase(nodeID);
-		parent->RemoveChild(nodeID);
+		if (parent)
+		{
+			parent->RemoveChild(nodeID);
+		}
 		for (int i = 0; i < components.size(); i++)
 		{
 			delete components[i];
 		}
+		std::vector<Node*> tempChildren;
 		for (auto& child : children)
+		{	
+			
+			//delete child.second;
+			tempChildren.push_back(child.second);
+		}
+		for (int i = 0; i < tempChildren.size(); ++i)
 		{
-			delete child.second;
+			delete tempChildren[i];
 		}
 	}
 
@@ -113,7 +121,7 @@ namespace Vana {
 		}
 	}
 
-	std::map<unsigned int, Node*> Node::GetChildren()
+	std::map<unsigned int, Node*> Node::GetChildren() const
 	{
 		return children;
 	}
@@ -190,6 +198,7 @@ namespace Vana {
 		if (!isAlive)
 		{
 			//delete this;
+
 			collector.push_back(this);
 		}
 	}
