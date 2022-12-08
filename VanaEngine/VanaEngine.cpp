@@ -66,6 +66,9 @@ void Vana::Update()
 		SceneSystem::GetInstance()->Update(deltaTime);
 
 		gameUI->Update();
+
+		GraphicSystem::GetInstance()->DrawScene();
+
 		GraphicSystem::GetInstance()->GraphiceSwapBuffer();
 		// reduce event
 		//coreEventManager.DispatchEvent(SceneSystem::GetInstance()->GetCurrentScene()->GetRoot());

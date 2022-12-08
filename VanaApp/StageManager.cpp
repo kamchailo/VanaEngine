@@ -31,7 +31,7 @@ void StageManager::Update(double _dt)
 	difficulty = max(0.5, difficulty);
 	if (countingTime > secondPerSpawn * (1.0 - difficulty))
 	{
-		DiamondHead* d = new DiamondHead(RandomPosition());
+		DiamondHead* d = new DiamondHead(glm::vec3(RandomPosition().x, RandomPosition().y, 0));
 		d->Init();
 		AddChild(d);
 		countingTime = 0.0;
@@ -45,7 +45,7 @@ void StageManager::Update(double _dt)
 			DiamondHead* diamondHead = dynamic_cast<DiamondHead*>(c.second);
 			if (diamondHead)
 			{
-	;			DiamondArrow* a = new DiamondArrow(diamondHead->GetPosition());
+	;			DiamondArrow* a = new DiamondArrow(glm::vec3(diamondHead->GetPosition().x, diamondHead->GetPosition().y, -1));
 				a->Init();
 				AddChild(a);
 			}

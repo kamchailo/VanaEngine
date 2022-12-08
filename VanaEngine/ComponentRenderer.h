@@ -30,4 +30,5 @@ private:
 	glm::vec2 spriteSize;
 	glm::vec2 tilling;
 	glm::vec2 tillingOffset;
+	bool alpha;
 };
