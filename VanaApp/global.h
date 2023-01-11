@@ -11,6 +11,7 @@ class ActorDebug;
 class ScoreBoard;
 
 inline NodeFactory nf;
+inline Scene* introScene;
 inline Scene* mainScene;
 inline Scene* endScene;
 

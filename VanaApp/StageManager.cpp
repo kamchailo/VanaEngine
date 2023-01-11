@@ -58,8 +58,8 @@ void StageManager::Update(double _dt)
 glm::vec3 StageManager::RandomPosition()
 {
 	std::srand(std::time(nullptr) * 3141592);
-	int x = (((double)std::rand() / RAND_MAX) - 0.5) * levelSize.x;
-	int y = (((double)std::rand() / RAND_MAX) - 0.5) * levelSize.y;
+	int x = (((double)std::rand() / RAND_MAX) - 0.5) * (levelSize.x - 100);
+	int y = (((double)std::rand() / RAND_MAX) - 0.5) * (levelSize.y - 100);
 	//std::cout << std::time(nullptr) << "Spawn at " << x << ", " << y << std::endl;
 	return glm::vec3(x, y, 0);;
 }

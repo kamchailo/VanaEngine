@@ -6,10 +6,13 @@
 
 #include "Enemy.h"
 #include "StageManager.h"
-
 #include "ScoreSprite.h"
 
+#include "CallBackFunction.h"
+#include "InputListener.h"
+
 #include "global.h"
+
 
 
 int main()
@@ -20,24 +23,18 @@ int main()
 	GraphicSystem::GetInstance()->SetViewScale(glm::vec2(2.0));
 	 
 	// Init Scene
-	mainScene = new Scene(nf, "../resources/scenes/test.json");
-	endScene = new Scene(nf, "../resources/scenes/test.json");
+	introScene = new Scene(nf, "../resources/scenes/intro.json");
+	mainScene = new Scene(nf, "../resources/scenes/main.json");
+	endScene = new Scene(nf, "../resources/scenes/end.json");
 
 	// Init Texture  
-	texPlayer = new Texture("../resources/textures/spriteSheet-test.png");
+	texPlayer = new Texture("../resources/textures/va-sheet.png");
 	texDiamondHead = new Texture("../resources/textures/spriteSheet-test.png");
 	texDiamondArrow = new Texture("../resources/textures/diamondArrowIdle.png");
 	texScore = new Texture("../resources/textures/number.png");
 
-	// Init ScoreBoard
-	scoreBoard = new ScoreBoard(texScore, scoreFontSize, glm::vec3(25.0, 250.0, 0.0));
-	mainScene->AddExtendedNode(scoreBoard);
-
-	// Init Player
+	// Init Player Debug
 	actorDebug = new ActorDebug("ActorDebug", 200, 100);
-	//Vana::gameUI->AddUiWindow(actorDebug);
-	player = new Actor(texPlayer, glm::vec2(50, 50));
-	mainScene->AddExtendedNode(player);
 
 	// DiamondHead Animation
 	diamondHeadIdle = new Animation2D(texDiamondHead, 4, 4, true, true);
@@ -54,12 +51,11 @@ int main()
 	diamondArrowIdle->AddKeyFrame(0.32, 0);
 	diamondArrowIdle->SetMaxDuration(0.48);
 
-	// StageManager
-	StageManager* stageManager = new StageManager(glm::vec2(800, 600));
-	mainScene->AddExtendedNode(stageManager);
+	InputListener* listener = new InputListener(INPUT_KEY_RESET, &StartGame);
+	introScene->AddExtendedNode(listener);
 
-	// Set mainScene as StartScene
-	SceneSystem::GetInstance()->SetStartScene(mainScene);
+	// Set introScene as StartScene
+	SceneSystem::GetInstance()->SetStartScene(introScene);
 
 	// Vana Engine Update
 	Vana::Update();

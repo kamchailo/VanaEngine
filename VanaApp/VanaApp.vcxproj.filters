@@ -42,7 +42,7 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="InputListener.cpp">
-      <Filter>1-Source Files</Filter>
+      <Filter>3-Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

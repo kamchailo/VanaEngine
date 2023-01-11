@@ -36,5 +36,6 @@ private:
 	Texture* idleTex;
 	Texture* dashTex;
 	Animation2D* idle;
+	Animation2D* walk;
 	Animation2D* dashAnim;
 };

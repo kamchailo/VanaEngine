@@ -25,34 +25,41 @@ Actor::Actor(Texture* tex, glm::vec2 spriteSize)
 	this->AddComponent(cr);
 	this->AddComponent(cp);
 	bod = GetComponent<ComponentPhysics>()->body;
-	
+
 	ComponentAnimator2D* compAnim2D = new ComponentAnimator2D();
 	this->AddComponent(compAnim2D);
-	idle = new Animation2D(idleTex, 4, 4, true, true);
-	idle->SetMaxDuration(16.0);
-	idle->AddKeyFrame(0, 0);
-	idle->AddKeyFrame(1, 1);
-	idle->AddKeyFrame(2, 2);
-	idle->AddKeyFrame(3, 3);
-	idle->AddKeyFrame(4, 4);
-	idle->AddKeyFrame(5, 5);
-	idle->AddKeyFrame(6, 6);
-	idle->AddKeyFrame(7, 7);
-	idle->AddKeyFrame(8, 8);
-	idle->AddKeyFrame(9, 9);
-	idle->AddKeyFrame(10, 10);
-	idle->AddKeyFrame(11, 11);
-	idle->AddKeyFrame(12, 12);
-	idle->AddKeyFrame(13, 13);
-	idle->AddKeyFrame(14, 14);
-	idle->AddKeyFrame(15, 15);
+	idle = new Animation2D(idleTex, 4, 3, true, true);
+	idle->SetMaxDuration(0.32);
+	idle->AddKeyFrame(0, 8);
+	idle->AddKeyFrame(0.8, 9);
+	idle->AddKeyFrame(0.16, 10);
+	idle->AddKeyFrame(0.24, 9);
+	//idle->AddKeyFrame(1.44, 8);
+	//idle->AddKeyFrame(9, 9);
+	//idle->AddKeyFrame(10, 10);
+	//idle->AddKeyFrame(11, 11);
+	//idle->AddKeyFrame(12, 12);
+	//idle->AddKeyFrame(13, 13);
+	//idle->AddKeyFrame(14, 14);
+	//idle->AddKeyFrame(15, 15);
 
-	dashTex = new Texture("../resources/textures/diamondArrowIdle.png");
-	dashAnim = new Animation2D(dashTex, 3, 1, true, true);
-	dashAnim->SetMaxDuration(0.48);
-	dashAnim->AddKeyFrame(0, 0);
-	dashAnim->AddKeyFrame(0.16, 1);
-	dashAnim->AddKeyFrame(0.32, 2);
+	walk = new Animation2D(idleTex, 4, 3, true, true);
+	walk->SetMaxDuration(0.64);
+	walk->AddKeyFrame(0, 0);
+	walk->AddKeyFrame(0.8, 1);
+	walk->AddKeyFrame(0.16, 2);
+	walk->AddKeyFrame(0.24, 3);
+	walk->AddKeyFrame(0.32, 4);
+	walk->AddKeyFrame(0.40, 5);
+	walk->AddKeyFrame(0.48, 6);
+	walk->AddKeyFrame(0.56, 7);
+
+	//dashTex = new Texture("../resources/textures/diamondArrowIdle.png");
+	dashAnim = new Animation2D(idleTex, 4, 3, true, true);
+	dashAnim->SetMaxDuration(1.0);
+	dashAnim->AddKeyFrame(0, 11);
+
+
 }
 
 void Actor::Init()
@@ -160,10 +167,12 @@ void Actor::Update(double _dt)
 	{
 		speed = min(maxSpeed, speed + speedStep * _dt);
 		bod->SetVelocity(direction * speed * dashSpeed);
+		this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(walk);
 	}
 	else
 	{
 		Dampen(_dt);
+		this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(idle);
 	}
 
 	// dampen
@@ -186,7 +195,6 @@ void Actor::Update(double _dt)
 	else
 	{
 		SetRotation(glm::vec3(0));
-		this->GetComponent<ComponentAnimator2D>()->SetPlayingAnimation(idle);
 	}
 	//Imgui Debug
 	actorDebug->SetText1(std::to_string(isDashing));
