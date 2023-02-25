@@ -1,6 +1,6 @@
 #include "actor.h"
-#include <MeshCollection.h>
-#include <Input.h>
+#include <Graphics/MeshCollection.h>
+#include <Input/Input.h>
 #include "ActorDebug.h"
 #include "Enemy.h"
 #include "ScoreSprite.h"

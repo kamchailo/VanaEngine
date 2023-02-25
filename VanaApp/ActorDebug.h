@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <GameUIWindow.h>
+#include <UI/GameUIWindow.h>
 
 class ActorDebug : public GameUIWindow
 {

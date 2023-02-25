@@ -1,7 +1,6 @@
 #include <VanaEngine.h>
 
 #include "actor.h"
-#include "ActorChild.h"
 #include "ActorDebug.h"
 
 #include "Enemy.h"

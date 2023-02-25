@@ -1,24 +1,13 @@
 #pragma once
 #include "pch.h"
-#include "ShaderCollection.h"
-#include "MeshCollection.h"
-
-//class VanaEngine
-//{
-//public:
-//	int Init();
-//	void Update();
-//	Vana::Node* root;
-//
-//
-//};
+#include "Graphics/ShaderCollection.h"
+#include "Graphics/MeshCollection.h"
 
 namespace Vana
 {
 	int Init(int _width, int _height);
 	void Update();
 	void Terminate();
-	//inline GraphicSystem* graphicSystem;
 	inline GameUI* gameUI;
 	inline Logger* logSystem;
 	inline CollisionManager collisionManager;
