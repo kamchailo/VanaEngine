@@ -1,20 +1,6 @@
 #pragma once
 
-namespace Vana
-{
-	class GameUI;
-}
-
-//namespace GameUIConst
-//{
-//	enum UIItemType
-//	{
-//		UI_TEXT,
-//		UI_SLIDER,
-//
-//	};
-//}
-
+#include "GameUI.h"
 
 class GameUIWindow
 {

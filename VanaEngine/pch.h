@@ -21,6 +21,10 @@
 #include <nlohmann/json.hpp>
 #include "VanaDefine.h"
 
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
 // Utilities
 #include "Utilities/Logger.h"
 #include "Input/Input.h"
